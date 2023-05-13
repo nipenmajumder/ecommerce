@@ -13,3 +13,5 @@
 <link rel="stylesheet" href="{{asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}"/>
 <script src="{{asset('backend/assets/vendor/js/helpers.js')}}"></script>
 <script src="{{asset('backend/assets/js/config.js')}}"></script>
+<link rel="stylesheet" href="{{asset('backend/toaster/css/toastr.min.css')}}"/>
+

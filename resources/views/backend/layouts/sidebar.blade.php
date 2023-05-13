@@ -99,7 +99,7 @@
         </li>
         <li class="menu-item">
             <a href="{{route('products.index')}}" class="menu-link">
-                <i class='menu-icon bx bx-book-heart'></i>
+                <i class='menu-icon bx bxs-book'></i>
                 <div>Products</div>
             </a>
         </li>
@@ -111,7 +111,7 @@
         </li>
         <li class="menu-item">
             <a href="{{route('order.index')}}" class="menu-link">
-                <i class='menu-icon bx bx-book-heart'></i>
+                <i class='menu-icon bx bxs-message-square'></i>
                 <div>Orders</div>
             </a>
         </li>

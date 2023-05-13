@@ -12,7 +12,7 @@ let config = {
   colors: {
     primary: '#696cff',
     secondary: '#8592a3',
-    success: '#71dd37',
+    success: '#66c732',
     info: '#03c3ec',
     warning: '#ffab00',
     danger: '#ff3e1d',
