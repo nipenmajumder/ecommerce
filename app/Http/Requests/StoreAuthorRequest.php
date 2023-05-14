@@ -11,7 +11,7 @@ class StoreAuthorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,30 @@ class StoreAuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'slug' => 'required|unique:authors,slug|lowercase:authors',
+            'avatar' => 'required|image|max:1024',
+            'email' => 'required|unique:authors,email',
+            'birthday' => 'required|date|date_format:Y-m-d',
+            'death_day' => 'nullable|date_format:Y-m-d|after_or_equal:date_of_birth',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Name is required!',
+            'slug.required' => 'Slug is required!',
+            'slug.unique' => 'Slug must be unique!',
+            'email.required' => 'Email is required!',
+            'email.unique' => 'Email must be unique!',
+            'birthday.required' => 'Birthday is required!',
+            'birthday.date_format' => 'Birthday must be date format!',
+            'death_day.date_format' => 'Death day must be date format!',
+            'death_day.after_or_equal' => 'Death day must be after or equal birthday!',
+            'avatar.required' => 'Avatar is required!',
+            'avatar.image' => 'Avatar must be image!',
+            'avatar.max' => 'Avatar must be less than 1MB!',
         ];
     }
 }
