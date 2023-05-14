@@ -17,6 +17,7 @@
     <title>@yield('title') | {{ env('APP_NAME')}}</title>
     <meta name="description" content=""/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @routes
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('backend.layouts.css')
     @stack('css')
