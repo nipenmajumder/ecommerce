@@ -11,22 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string("slug")->unique();
-            $table->string('sku')->unique();
-            $table->unsignedBigInteger('barcode')->unique();
+            $table->string('slug')->unique();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('description')->nullable();
             $table->string('image')->nullable();
-            $table->text('description')->nullable();
-            $table->foreignId('author_id')->nullable()
-                ->constrained('authors', 'id')
-                ->onDelete('set null');
-            $table->foreignId('publication_id')->nullable()
-                ->constrained('publications', 'id')
-                ->onDelete('set null');
-            $table->decimal('buy_price', 15, 2)->default(0);
-            $table->decimal('sell_price', 15, 2)->default(0);
             $table->tinyInteger('status')->default(1);
             $table->foreignId('created_by')->nullable()
                 ->constrained('users', 'id')
@@ -44,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('publications');
     }
 };
