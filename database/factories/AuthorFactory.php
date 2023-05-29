@@ -16,8 +16,15 @@ class AuthorFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->name();
         return [
-            //
+            'name' => $name,
+            'slug' => \Str::slug($name),
+            'avatar' => str_replace('public/', '', fake()->image('public/images/author', 640, 480, null, true)),
+            'email' => fake()->unique()->freeEmail(),
+            'birthday' => fake()->date(),
+            'death_day' => fake()->date(),
+            'status' => fake()->numberBetween(1, 2),
         ];
     }
 }

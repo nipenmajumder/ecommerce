@@ -18,7 +18,7 @@
     }
 </style>
 
-<div class="loading" id="apploader" style="display: none" >
+<div class="loading" id="loader" style="display: none" >
     <div class="spinner-border spinner-border-lg text-primary text-center" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>

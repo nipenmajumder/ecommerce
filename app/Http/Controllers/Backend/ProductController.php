@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Author;
 use App\Models\Product;
+use App\Models\Publication;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products= Product::query()->paginate(10);
+        $products = Product::query()->paginate(10);
         return view('backend.product.index',compact('products'));
     }
 
@@ -29,9 +31,14 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request, Product $product)
     {
-        //
+        try {
+            $product->fill($request->validated())->save();
+            return $this->respondCreated($product, 'Product created successfully');
+        } catch (\Throwable $exception) {
+            return $this->respondError($exception->getMessage(), $exception->getCode());
+        }
     }
 
     /**
