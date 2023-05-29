@@ -98,7 +98,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{route('products.index')}}" class="menu-link">
+            <a href="{{route('product.index')}}" class="menu-link">
                 <i class='menu-icon bx bxs-book'></i>
                 <div>Products</div>
             </a>

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
@@ -18,11 +19,22 @@ class Product extends Model
         'slug',
         'sku',
         'barcode',
-        'image',
-        'description',
         'author_id',
+        'publication_id',
         'buy_price',
         'sell_price',
+        'image',
+        'description',
         'status',
     ];
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class);
+    }
+
+    public function publication(): BelongsTo
+    {
+        return $this->belongsTo(Publication::class);
+    }
 }

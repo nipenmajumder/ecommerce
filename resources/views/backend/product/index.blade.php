@@ -69,29 +69,29 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($publications as $publication)
+                        @foreach($products as $product)
                             <tr class="odd">
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$publication->name}}</td>
-                                <td>{{$publication->slug}}</td>
+                                <td>{{$product->name}}</td>
+                                <td>{{$product->slug}}</td>
                                 <td>
-                                    <img src="{{asset($publication->image)}}" alt="" width="100px">
+                                    <img src="{{asset($product->image)}}" alt="" width="100px">
                                 </td>
                                 <td>
-                                    @if($publication->status == 1)
+                                    @if($product->status == 1)
                                         <span class="badge bg-success">Active</span>
                                     @else
                                         <span class="badge bg-danger">Inactive</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('publication.edit',$publication->id)}}">
+                                    <a href="{{route('product.edit',$product->id)}}">
                                         <button class="btn btn-sm btn-primary">
                                             <i class='bx bxs-edit mx-1'></i>
                                         </button>
                                     </a>
-                                    <a href="{{route('publication.show',$publication->id)}}">
-                                        <button @class(['btn btn-sm','btn-info' => $publication->status == 0,'btn-success' => $publication->status == 1,]) >
+                                    <a href="{{route('product.show',$product->id)}}">
+                                        <button @class(['btn btn-sm','btn-info' => $product->status == 0,'btn-success' => $product->status == 1,]) >
                                             <i class='bx bx-sync mx-1'></i>
                                         </button>
                                     </a>
@@ -106,7 +106,7 @@
                         </tbody>
                     </table>
                     <div class="row mx-2">
-                        {{$publications->links()}}
+                        {{$products->links()}}
                     </div>
                 </div>
             </div>

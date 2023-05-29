@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Api\GenerateSkuBarcode;
 use App\Http\Controllers\Backend\AuthorController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,12 +23,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('author', AuthorController::class);
     Route::resource('publication', PublicationController::class);
-    Route::resource('products', ProductController::class);
-    Route::resource('purchase', PurchaseController::class)->except(['edit','update']);
+    Route::resource('product', ProductController::class);
+    Route::resource('purchase', PurchaseController::class)->except(['edit', 'update']);
     Route::resource('order', OrderController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('get-authors', \App\Http\Controllers\Backend\Api\AuthorController::class)->name('get-authors');
+    Route::get('get-publications', \App\Http\Controllers\Backend\Api\PublicationController::class)->name('get-publications');
+    Route::get('get-sku-barcode', GenerateSkuBarcode::class)->name('get-sku-barcode');
 });
 
 require __DIR__ . '/auth.php';

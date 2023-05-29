@@ -17,6 +17,10 @@
     "dependencies": {
         "vue": "^3.2.36",
         "vue-loader": "^17.0.1",
-        "ziggy-vue": "^0.2.0"
+        "ziggy-vue": "^0.2.0",
+        "vue-select": "^4.0.0-beta.5",
+        "collect.js": "^4.34.3",
+        "laravel-vue-pagination": "^4.1.0",
+        "lodash": "^4.17.21"
     }
 }

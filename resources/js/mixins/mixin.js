@@ -11,7 +11,7 @@ export default {
         newTab(url) {
             window.open(url, '_blank');
         },
-        Slugify: function (text) {
+        slugify: function (text) {
             let slug = '';
             let titleLower = text.toLowerCase();
             slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e');
@@ -50,17 +50,22 @@ export default {
                 form[key] = [];
             });
         },
-        Loader: function (loader) {
+        loader: function (loader) {
+            const appLoader = $('#loader');
+            const layouts = $('#layouts');
             if (loader === true) {
-                $('#apploader').show();
-                $('#layouts').show();
+                appLoader.show();
+                layouts.show();
             } else if (loader === false) {
-                $('#apploader').hide();
-                $('#layouts').hide();
+                appLoader.hide();
+                layouts.hide();
             } else {
-                $('#apploader').show();
-                $('#layouts').show();
-                setTimeout(() => $('#apploader').hide(),  $('#layouts').hide(), 500);
+                appLoader.show();
+                layouts.show();
+                setTimeout(() => {
+                    appLoader.hide();
+                    layouts.hide();
+                }, 500);
             }
         },
 
