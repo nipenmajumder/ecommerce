@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\PurchaseStoreAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
+use App\Model\User;
 use App\Models\Purchase;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -23,15 +26,29 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        return view('backend.purchase.create');
+        $purchaseCount = Purchase::query()->whereDate('date', date('Y-m-d'))->count();
+        $purchaseCount = $purchaseCount ?? 0;
+        $invoice = 'P' . '-' . auth()->user()->id . '-' . date('dmy') .
+            (str_pad($purchaseCount + 1, 3, '0', STR_PAD_LEFT));
+        $user = auth()->user();
+        $date = date('Y-m-d');
+        return view('backend.purchase.create', compact('invoice', 'user', 'date'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePurchaseRequest $request)
+    public function store(StorePurchaseRequest $request,PurchaseStoreAction $action, Purchase $purchase)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $saved = $action->handle($request, $purchase);
+            DB::commit();
+            return $this->respondCreated($saved, 'Product purchased successfully');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return $this->respondError($e->getMessage());
+        }
     }
 
     /**

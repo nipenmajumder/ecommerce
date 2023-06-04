@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Api\BarcodeWiseProduct;
 use App\Http\Controllers\Backend\Api\GenerateSkuBarcode;
 use App\Http\Controllers\Backend\AuthorController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('publication', PublicationController::class);
     Route::resource('product', ProductController::class);
     Route::resource('purchase', PurchaseController::class)->except(['edit', 'update']);
+    Route::post('barcode-wise-product', BarcodeWiseProduct::class)->name('barcode-wise-product');
     Route::resource('order', OrderController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

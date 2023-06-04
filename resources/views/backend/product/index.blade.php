@@ -62,8 +62,10 @@
                         <tr>
                             <th>Sl</th>
                             <th>Name</th>
-                            <th>Slug</th>
-                            <th>Image</th>
+                            <th>Sku</th>
+                            <th>Barcode</th>
+                            <th>Stock</th>
+                            <th>Sold</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -73,10 +75,10 @@
                             <tr class="odd">
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$product->name}}</td>
-                                <td>{{$product->slug}}</td>
-                                <td>
-                                    <img src="{{asset($product->image)}}" alt="" width="100px">
-                                </td>
+                                <td>{{$product->sku}}</td>
+                                <td>{{$product->barcode}}</td>
+                                <td>{{$product->total_stock}}</td>
+                                <td>{{$product->total_sold}}</td>
                                 <td>
                                     @if($product->status == 1)
                                         <span class="badge bg-success">Active</span>

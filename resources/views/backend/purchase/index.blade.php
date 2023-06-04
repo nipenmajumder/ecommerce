@@ -69,7 +69,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($products as $product)
+                        @foreach($purchase as $product)
                             <tr class="odd">
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$product->name}}</td>
@@ -106,7 +106,7 @@
                         </tbody>
                     </table>
                     <div class="row mx-2">
-                        {{$products->links()}}
+                        {{$purchase->links()}}
                     </div>
                 </div>
             </div>

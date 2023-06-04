@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Author;
 use App\Models\Product;
 use App\Models\Publication;
+use App\Models\Stock;
 
 class ProductController extends Controller
 {
@@ -16,8 +17,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->paginate(10);
-        return view('backend.product.index',compact('products'));
+        $products = Product::query()
+            ->withCount(['stocks as total_stock' => function ($query) {
+                return $query->where('stock_status', Stock::STATUS['Stock']);
+            }])
+            ->withCount(['stocks as total_sold' => function ($query) {
+                return $query->where('stock_status', Stock::STATUS['Sale']);
+            }])
+            ->paginate(10);
+        return view('backend.product.index', compact('products'));
     }
 
     /**
@@ -54,7 +62,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('backend.product.edit',compact('product'));
+        return view('backend.product.edit', compact('product'));
     }
 
     /**
