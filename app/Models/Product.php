@@ -37,4 +37,9 @@ class Product extends Model
     {
         return $this->belongsTo(Publication::class);
     }
+
+    public function stocks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Stock::class, 'product_id', 'id');
+    }
 }

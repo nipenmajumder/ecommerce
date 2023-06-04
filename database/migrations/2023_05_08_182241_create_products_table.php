@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string("slug")->unique();
             $table->string('sku')->unique();
-            $table->unsignedBigInteger('barcode')->unique();
+            $table->string('barcode')->unique();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('author_id')->nullable()

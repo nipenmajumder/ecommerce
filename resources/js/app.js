@@ -8,7 +8,7 @@ import vSelect from "vue-select";
 import Create from "./components/product/create.vue";
 import Edit from "./components/product/edit.vue";
 import Index from "./components/product/index.vue";
-
+import CreatePurchase from "./components/purchase/Purchase.vue";
 const app = createApp({});
 app.use(ZiggyVue, Ziggy);
 app.component("pagination", Bootstrap5Pagination);
@@ -18,6 +18,6 @@ app.component("v-select", vSelect);
 app.component('create-product', Create);
 app.component('edit-product', Edit);
 app.component('product-list', Index);
-
+app.component('create-purchase',CreatePurchase)
 app.mixin(mixin);
 app.mount("#app");
