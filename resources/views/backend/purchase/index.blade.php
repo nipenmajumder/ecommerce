@@ -42,7 +42,8 @@
                         <div
                             class="col-12 col-md-6 d-flex align-items-center justify-content-end flex-column flex-md-row pe-3 gap-md-2">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>
-                                    <input type="search" class="form-control" placeholder="Search Invoice" aria-controls="DataTables_Table_0"></label>
+                                    <input type="search" class="form-control" placeholder="Search Invoice"
+                                           aria-controls="DataTables_Table_0"></label>
                             </div>
                             <div class="invoice_status mb-3 mb-md-0">
                                 <select id="UserRole" class="form-select">
@@ -61,9 +62,11 @@
                         <thead>
                         <tr>
                             <th>Sl</th>
-                            <th>Name</th>
-                            <th>Slug</th>
-                            <th>Image</th>
+                            <th>Date</th>
+                            <th>Invoice No</th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Buy Price</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -72,16 +75,18 @@
                         @foreach($purchase as $product)
                             <tr class="odd">
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$product->name}}</td>
-                                <td>{{$product->slug}}</td>
-                                <td>
-                                    <img src="{{asset($product->image)}}" alt="" width="100px">
-                                </td>
+                                <td>{{$product->date}}</td>
+                                <td>{{$product->invoice}}</td>
+                                <td></td>
+                                <td>{{$product->total_quantity}}</td>
+                                <td>{{$product->total}}</td>
                                 <td>
                                     @if($product->status == 1)
-                                        <span class="badge bg-success">Active</span>
+                                        <span class="badge bg-success">Approved</span>
+                                    @elseif($product->status == 2)
+                                    <span class="badge bg-danger">Pending</span>
                                     @else
-                                        <span class="badge bg-danger">Inactive</span>
+                                        <span class="badge bg-danger">Cancelled</span>
                                     @endif
                                 </td>
                                 <td>

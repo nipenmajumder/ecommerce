@@ -122,8 +122,8 @@ export default {
                 .then((response) => {
                     if (response.data.status === 201) {
                         toastr.success("Purchase add successfully")
-                        const url = route('purchases.show', response.data.result.id);
-                        this.newTab(url);
+                        // const url = route('purchases.show', response.data.result.id);
+                        // this.newTab(url);
                         this.reload(0);
                         this.Loader();
                     }
