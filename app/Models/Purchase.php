@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Traits\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Purchase extends Model
 {
-    use HasFactory,CreatedUpdatedBy;
+    use HasFactory, CreatedUpdatedBy;
 
     protected $table = 'purchases';
     protected $primaryKey = 'id';
@@ -28,4 +30,14 @@ class Purchase extends Model
         'pending' => 2,
         'cancelled' => 3,
     ];
+
+    public function purchaseDetails(): HasMany
+    {
+        return $this->hasMany(PurchaseDetails::class, 'purchase_id', 'id');
+    }
+
+    public function user(): HasOne
+    {
+        return $this->hasOne(User::class, 'id', 'created_by');
+    }
 }

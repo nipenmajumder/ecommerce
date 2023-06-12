@@ -72,32 +72,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($purchase as $product)
+                        @foreach($purchases as $purchase)
                             <tr class="odd">
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$product->date}}</td>
-                                <td>{{$product->invoice}}</td>
-                                <td></td>
-                                <td>{{$product->total_quantity}}</td>
-                                <td>{{$product->total}}</td>
+                                <td>{{$purchase->date}}</td>
+                                <td>{{$purchase->invoice}}</td>
+                                <td>{{$purchase->total_items}}</td>
+                                <td>{{$purchase->total_quantity}}</td>
+                                <td>{{$purchase->total}}</td>
                                 <td>
-                                    @if($product->status == 1)
+                                    @if($purchase->status == 1)
                                         <span class="badge bg-success">Approved</span>
-                                    @elseif($product->status == 2)
-                                    <span class="badge bg-danger">Pending</span>
+                                    @elseif($purchase->status == 2)
+                                        <span class="badge bg-danger">Pending</span>
                                     @else
                                         <span class="badge bg-danger">Cancelled</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('product.edit',$product->id)}}">
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class='bx bxs-edit mx-1'></i>
-                                        </button>
-                                    </a>
-                                    <a href="{{route('product.show',$product->id)}}">
-                                        <button @class(['btn btn-sm','btn-info' => $product->status == 0,'btn-success' => $product->status == 1,]) >
-                                            <i class='bx bx-sync mx-1'></i>
+                                    <a href="{{route('purchase.show',$purchase->id)}}">
+                                        <button @class(['btn btn-sm','btn-info' => $purchase->status == 0,'btn-success' => $purchase->status == 1,]) >
+                                            <i class='bx bxs-detail mx-1'></i>
                                         </button>
                                     </a>
                                     <a>
@@ -111,7 +106,7 @@
                         </tbody>
                     </table>
                     <div class="row mx-2">
-                        {{$purchase->links()}}
+                        {{$purchases->links()}}
                     </div>
                 </div>
             </div>
