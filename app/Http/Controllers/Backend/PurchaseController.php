@@ -17,8 +17,10 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $purchase = Purchase::query()->paginate(10);
-        return view('backend.purchase.index', compact('purchase'));
+        $purchases = Purchase::query()
+            ->withCount('purchaseDetails as total_items')
+            ->paginate(10);
+        return view('backend.purchase.index', compact('purchases'));
     }
 
     /**
@@ -38,7 +40,7 @@ class PurchaseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePurchaseRequest $request,PurchaseStoreAction $action, Purchase $purchase)
+    public function store(StorePurchaseRequest $request, PurchaseStoreAction $action, Purchase $purchase)
     {
         try {
             DB::beginTransaction();
@@ -56,7 +58,16 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        $purchase = $purchase
+            ->loadCount('purchaseDetails')
+            ->load(
+                [
+                    'purchaseDetails.product:id,name,buy_price,sell_price,sku,barcode', 'user'
+                ]
+            );
+//        dd($purchase->toArray());
+        return view('backend.purchase.view', compact('purchase'));
+
     }
 
     /**
