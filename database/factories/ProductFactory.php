@@ -22,7 +22,7 @@ class ProductFactory extends Factory
     {
         $authors = Author::query()->get();
         $publication = Publication::query()->get();
-        $name = fake()->name();
+        $name = fake()->text();
         return [
             'name' => $name,
             'slug' => Str::slug($name),
