@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('frontend.layouts.app');
-});
+    return view('frontend.layouts.home');
+})->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
