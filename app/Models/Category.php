@@ -30,4 +30,12 @@ class Category extends Model
         return $query->where('status', self::STATUS['active']);
     }
 
+
+
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where(function ($query) use ($keyword) {
+            $query->where('name', 'LIKE', '%' . $keyword . '%');
+        });
+    }
 }

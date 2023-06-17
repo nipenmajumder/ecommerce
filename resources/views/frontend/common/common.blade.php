@@ -13,12 +13,15 @@
                 <h1 class="fs-2 border-warning">লেখক সমূহ</h1>
                 @break
         @endswitch
+        <form class="form-inline" method="get" action="{{request()->route()->getName()}}">
+            <div class="input-group mb-3 w-25">
+                <input type="search" class="form-control" placeholder="অনুসন্ধান করুন" name="name"
+                       aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+            </div>
+        </form>
 
-        <div class="input-group mb-3 w-25">
-            <input type="text" class="form-control" placeholder="অনুসন্ধান করুন"
-                   aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-        </div>
+
         <div class="row">
             @foreach($data as $value)
                 <div class="col-lg-4">
