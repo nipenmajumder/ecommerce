@@ -2,7 +2,8 @@
     <!-- logo and search bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('frontend/image/banner/logo-v22.webp')}}" alt=""></a>
+            <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('frontend/image/banner/logo-v22.webp')}}"
+                                                                  alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +16,12 @@
                 </form>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">লগইন/রেজিস্টার</a>
+                        @guest
+                            <a class="nav-link" href="{{route('login')}}">লগইন/রেজিস্টার</a>
+                        @endguest
+                        @auth
+                            <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                        @endauth
                     </li>
                 </ul>
             </div>
@@ -31,10 +37,13 @@
                 <a class="nav-link text-secondary-emphasis" href="#">বই</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-secondary-emphasis" href="./subject.html">বিষয়</a>
+                <a class="nav-link text-secondary-emphasis" href="{{route('subjects')}}">বিষয়</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-secondary-emphasis" href="#">প্রকাশক</a>
+                <a class="nav-link text-secondary-emphasis" href="{{route('publications')}}">প্রকাশক</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary-emphasis" href="{{route('authors')}}">লেখক</a>
             </li>
         </ul>
     </div>
