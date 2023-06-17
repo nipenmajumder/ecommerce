@@ -42,6 +42,9 @@
             <li class="nav-item">
                 <a class="nav-link text-secondary-emphasis" href="{{route('publications')}}">প্রকাশক</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary-emphasis" href="{{route('authors')}}">লেখক</a>
+            </li>
         </ul>
     </div>
 </header>

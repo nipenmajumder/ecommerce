@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\PublicationController;
 use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Frontend\AuthorBooksController;
 use App\Http\Controllers\Frontend\CategoryBooksController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PublicationBooksController;
@@ -19,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('subjects', \App\Http\Controllers\Frontend\CategoryController::class)->name('subjects');
-Route::get('subject/{slug}', CategoryBooksController::class)->name('subject.book');
 Route::get('publications', \App\Http\Controllers\Frontend\PublicationController::class)->name('publications');
+Route::get('authors', \App\Http\Controllers\Frontend\AuthorController::class)->name('authors');
+
+
+Route::get('author/{slug}', AuthorBooksController::class)->name('author.book');
+Route::get('subject/{slug}', CategoryBooksController::class)->name('subject.book');
 Route::get('publication/{slug}', PublicationBooksController::class)->name('publication.book');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
