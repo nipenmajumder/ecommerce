@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Author;
+use App\Models\Category;
 use App\Models\Publication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -20,6 +21,7 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $categories = Category::query()->get();
         $authors = Author::query()->get();
         $publication = Publication::query()->get();
         $name = fake()->text();
@@ -30,6 +32,7 @@ class ProductFactory extends Factory
             'barcode' => fake()->unique()->numerify('##########'),
             'image' => str_replace('public/', '', fake()->image('public/images/product', 640, 480, null, true)),
             'description' => fake()->text(),
+            'category_id'=>$categories->random()->id,
             'author_id' => $authors->random()->id,
             'publication_id' => $publication->random()->id,
             'buy_price' => fake()->numberBetween(100, 1000),

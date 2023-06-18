@@ -19,6 +19,7 @@ class Product extends Model
         'slug',
         'sku',
         'barcode',
+        'category_id',
         'author_id',
         'publication_id',
         'buy_price',
@@ -41,5 +42,12 @@ class Product extends Model
     public function stocks(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Stock::class, 'product_id', 'id');
+    }
+
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where(function ($query) use ($keyword) {
+            $query->where('name', 'LIKE', '%' . $keyword . '%');
+        });
     }
 }

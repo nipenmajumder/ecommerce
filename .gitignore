@@ -3,6 +3,11 @@
 /public/build
 /public/hot
 /public/storage
+/public/images/author
+/public/images/category
+/public/images/product
+/public/images/publication
+/public/images/slider
 /storage/*.key
 /vendor
 .env

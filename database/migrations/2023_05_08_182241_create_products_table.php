@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('barcode')->unique();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->foreignId('category_id')->nullable()
+                ->constrained('categories', 'id')
+                ->onDelete('set null');
             $table->foreignId('author_id')->nullable()
                 ->constrained('authors', 'id')
                 ->onDelete('set null');
