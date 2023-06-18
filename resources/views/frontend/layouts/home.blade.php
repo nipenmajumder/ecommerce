@@ -5,7 +5,8 @@
         <div class="carousel-indicators">
             @foreach($sliders as $key => $slider)
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}"
-                        @if($key === 0) class="active" aria-current="true" @endif aria-label="Slide {{ $key + 1 }}"></button>
+                        @if($key === 0) class="active" aria-current="true"
+                        @endif aria-label="Slide {{ $key + 1 }}"></button>
             @endforeach
         </div>
         <div class="carousel-inner">
@@ -27,107 +28,42 @@
         </button>
     </div>
 
-    <section>
-        <p class="fs-6 border p-2 mt-3 mb-3">বইমেলা ২০২৩ এর নতুন বই</p>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col-md-2">
-                <div class="card h-100">
-                    <img src="{{asset('frontend/image/banner/340821389_149637451389361_395511-192x254.webp')}}"
-                         class="card-img-top"
-                         alt="..."><span
-                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
-                            <br>
-                            ছাড়</span>
-                    <div class="card-body">
-                        <h5 class="card-title fs-6">রুকইয়াহ</h5>
-                        <p class="card-text text-body-secondary fs-6">আবদুল্লাহ আল মাসউদ</p>
-                        <p class="card-text"><span class="text-decoration-line-through">460 ৳</span> <span
-                                class="text-danger">322 ৳</span></p>
+    @foreach($categories as $category)
+        <section>
+            <p class="fs-6 border p-2 mt-3 mb-3">{{$category->name}}</p>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @foreach($category->books->take(6) as $book)
+                    <div class="col-md-2">
+                        <div class="card h-100">
+                            <img src="{{asset($book->image)}}"
+                                 class="card-img-top"
+                                 alt="{{Str::limit($book->name,15)}}">
+                            <span class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">
+                            30%<br>ছাড়
+                        </span>
+                            <div class="card-body">
+                                <h5 class="card-title fs-6">{{Str::limit($book->name,13)}}</h5>
+                                <p class="card-text text-body-secondary fs-6">{{Str::limit($book->author?->name,13)}}</p>
+                                <p class="card-text">
+                                    <span class="text-decoration-line-through">460 ৳</span>
+                                    <span class="text-danger">322 ৳</span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card h-100">
-                    <img src="{{asset('frontend/image/banner/Nobijir-duwa-Cover-Font-192x254.webp')}}"
-                         class="card-img-top"
-                         alt="..."><span
-                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
-                            <br>
-                            ছাড়</span>
-                    <div class="card-body">
-                        <h5 class="card-title fs-6">রুকইয়াহ</h5>
-                        <p class="card-text text-body-secondary fs-6">আবদুল্লাহ আল মাসউদ</p>
-                        <p class="card-text"><span class="text-decoration-line-through">460 ৳</span> <span
-                                class="text-danger">322 ৳</span></p>
-                    </div>
+                @endforeach
 
-                </div>
+                @if(count($category->books) < 6)
+                    @for($i = count($category->books); $i < 6; $i++)
+                        <div class="col-md-2"></div>
+                    @endfor
+                @endif
             </div>
-            <div class="col-md-2">
-                <div class="card h-100">
-                    <img src="{{asset('frontend/image/banner/muslim-sisthachar-1-192x254.webp')}}" class="card-img-top"
-                         alt="..."><span
-                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
-                            <br>
-                            ছাড়</span>
-                    <div class="card-body">
-                        <h5 class="card-title fs-6">রুকইয়াহ</h5>
-                        <p class="card-text text-body-secondary fs-6">আবদুল্লাহ আল মাসউদ</p>
-                        <p class="card-text"><span class="text-decoration-line-through">460 ৳</span> <span
-                                class="text-danger">322 ৳</span></p>
-                    </div>
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-warning w-25">সকল নতুন প্রকাশিত বই</button>
+            </div>
+        </section>
+    @endforeach
 
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card h-100">
-                    <img src="{{asset('frontend/image/banner/otut-pathor-192x254.webp')}}" class="card-img-top"
-                         alt="..."><span
-                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
-                            <br>
-                            ছাড়</span>
-                    <div class="card-body">
-                        <h5 class="card-title fs-6">রুকইয়াহ</h5>
-                        <p class="card-text text-body-secondary fs-6">আবদুল্লাহ আল মাসউদ</p>
-                        <p class="card-text"><span class="text-decoration-line-through">460 ৳</span> <span
-                                class="text-danger">322 ৳</span></p>
-                    </div>
 
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card h-100">
-                    <img src="{{asset('frontend/image/banner/rukiyah-02-192x254.webp')}}" class="card-img-top"
-                         alt="..."><span
-                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
-                            <br>
-                            ছাড়</span>
-                    <div class="card-body">
-                        <h5 class="card-title fs-6">রুকইয়াহ</h5>
-                        <p class="card-text text-body-secondary fs-6">আবদুল্লাহ আল মাসউদ</p>
-                        <p class="card-text"><span class="text-decoration-line-through">460 ৳</span> <span
-                                class="text-danger">322 ৳</span></p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card h-100">
-                    <img src="{{asset('frontend/image/banner/WhatsApp-Image-2023-04-16-at-17.38.39-192x254.jpg')}}"
-                         class="card-img-top"
-                         alt="..."><span
-                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
-                            <br>
-                            ছাড়</span>
-                    <div class="card-body">
-                        <h5 class="card-title fs-6">রুকইয়াহ</h5>
-                        <p class="card-text text-body-secondary fs-6">আবদুল্লাহ আল মাসউদ</p>
-                        <p class="card-text"><span class="text-decoration-line-through">460 ৳</span> <span
-                                class="text-danger">322 ৳</span></p>
-                    </div>
-                </div>
-            </div>
-            <button type="button" class="btn bg-warning w-25 mx-auto">সকল নতুন প্রকাশিত বই</button>
-        </div>
-    </section>
 @endsection
