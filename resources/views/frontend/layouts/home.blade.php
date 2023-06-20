@@ -35,10 +35,12 @@
                 @foreach($category->books->take(6) as $book)
                     <div class="col-md-2">
                         <div class="card h-100">
-                            <img src="{{asset($book->image)}}"
-                                 class="card-img-top"
-                                 alt="{{Str::limit($book->name,15)}}">
-                            <span class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">
+                            <a href="{{route('book-details-slug',$book->slug)}}">
+                                <img src="{{asset($book->image)}}" class="card-img-top"
+                                     alt="{{Str::limit($book->name,15)}}">
+                            </a>
+                            <span
+                                class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">
                             30%<br>ছাড়
                         </span>
                             <div class="card-body">
@@ -64,6 +66,5 @@
             </div>
         </section>
     @endforeach
-
 
 @endsection
