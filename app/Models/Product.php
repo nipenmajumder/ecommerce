@@ -29,6 +29,11 @@ class Product extends Model
         'status',
     ];
 
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);
