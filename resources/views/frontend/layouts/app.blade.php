@@ -7,6 +7,7 @@
     <meta name="description" content=""/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @routes
+    @routes('api')
     @include('frontend.layouts.css')
     @vite([ 'resources/js/app.js'])
     @stack('css')

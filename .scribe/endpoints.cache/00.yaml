@@ -6,7 +6,171 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/user
+    uri: api/v1/get-categories
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle the incoming request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":200,"message":"Categories fetched successfully","result":{"data":[{"id":1,"name":"Carley Thiel","book_count":8},{"id":2,"name":"Zechariah Green","book_count":2},{"id":3,"name":"Mrs. Destany Morar Jr.","book_count":4},{"id":4,"name":"Isabell Braun","book_count":5},{"id":5,"name":"Sheldon Runolfsson","book_count":3},{"id":6,"name":"Beaulah Gibson","book_count":4},{"id":7,"name":"Lorenzo Pfannerstill","book_count":1},{"id":8,"name":"Dane Mills","book_count":1},{"id":9,"name":"Liam Blanda","book_count":3},{"id":10,"name":"Destini Kutch","book_count":1},{"id":11,"name":"Lysanne Orn","book_count":5},{"id":12,"name":"Adolfo Cruickshank","book_count":6},{"id":13,"name":"Isom Franecki","book_count":5},{"id":14,"name":"Art Kunde","book_count":0},{"id":15,"name":"Abel Mante","book_count":0},{"id":16,"name":"Prof. Alayna Blick","book_count":1},{"id":17,"name":"Dr. Raymond Moore DVM","book_count":2},{"id":18,"name":"Barbara Schroeder V","book_count":3},{"id":19,"name":"Karlee Strosin","book_count":6},{"id":20,"name":"Ellsworth Parisian","book_count":3},{"id":21,"name":"George Hayes DDS","book_count":2},{"id":22,"name":"Delbert Runte","book_count":4},{"id":23,"name":"Zola Rice","book_count":8},{"id":24,"name":"Clifford Kozey","book_count":0},{"id":30,"name":"Madisen Funk","book_count":5}]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '55'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/get-publications
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle the incoming request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":200,"message":"Publications fetched successfully","result":{"data":[{"id":1,"name":"Amely Gerhold","book_count":4},{"id":2,"name":"Carole Lebsack","book_count":9},{"id":3,"name":"Carmela Ortiz","book_count":6},{"id":4,"name":"Miss Jaclyn Orn DVM","book_count":5},{"id":5,"name":"Domenick Parker I","book_count":1},{"id":6,"name":"Julius Bauch","book_count":0},{"id":7,"name":"Jarrell Wiza","book_count":7},{"id":8,"name":"Monserrate Spencer","book_count":3},{"id":9,"name":"Carson White","book_count":5},{"id":10,"name":"Verner Aufderhar PhD","book_count":5},{"id":11,"name":"Cleora Breitenberg","book_count":5},{"id":12,"name":"Margaretta Heller","book_count":7},{"id":13,"name":"Monty Mann","book_count":10},{"id":14,"name":"Colten Harber","book_count":5},{"id":15,"name":"Sydni Schamberger","book_count":5},{"id":16,"name":"Gordon Ryan","book_count":4},{"id":17,"name":"Jerald Dooley V","book_count":5},{"id":18,"name":"Vanessa Mosciski","book_count":6},{"id":19,"name":"Prof. Lucious Oberbrunner","book_count":7},{"id":20,"name":"Fatima Casper","book_count":1}]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '54'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/get-authors
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle the incoming request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":200,"message":"Authors fetched successfully","result":{"data":[{"id":1,"name":"Mr. Omer Durgan Jr.","book_count":7},{"id":2,"name":"Rosalinda Steuber","book_count":3},{"id":3,"name":"Angela Wolff","book_count":0},{"id":4,"name":"Nicklaus Hamill","book_count":3},{"id":5,"name":"Eulah Kunze V","book_count":9},{"id":6,"name":"Stefanie Bradtke PhD","book_count":4},{"id":7,"name":"Prof. Ernesto Shanahan","book_count":3},{"id":8,"name":"Giovanni Feeney","book_count":3},{"id":9,"name":"Stefanie Mayer","book_count":3},{"id":10,"name":"Dr. Haskell Bashirian V","book_count":5},{"id":11,"name":"Madyson DuBuque MD","book_count":4},{"id":12,"name":"Karson Toy IV","book_count":5},{"id":13,"name":"Miss Vergie Brekke Jr.","book_count":1},{"id":14,"name":"Mavis Graham","book_count":2},{"id":15,"name":"Birdie Schmitt","book_count":2},{"id":16,"name":"Lexus Schoen","book_count":2},{"id":17,"name":"Iva Wehner","book_count":1},{"id":18,"name":"Terrill Mraz","book_count":2},{"id":19,"name":"Vanessa Schumm","book_count":1},{"id":20,"name":"Stevie Beier II","book_count":3},{"id":21,"name":"Bennie Paucek","book_count":6},{"id":22,"name":"Trudie Boyer","book_count":3},{"id":23,"name":"Kyra Powlowski DVM","book_count":3},{"id":24,"name":"Prof. Kameron Lowe DDS","book_count":4},{"id":25,"name":"Minerva Willms Sr.","book_count":2},{"id":26,"name":"Deshawn Macejkovic","book_count":8},{"id":27,"name":"Carmela Schiller","book_count":2},{"id":28,"name":"Eula Rutherford","book_count":3},{"id":29,"name":"Hank Streich","book_count":4},{"id":30,"name":"Miss Joana Ritchie","book_count":2}]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '53'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/get-books
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle the incoming request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":200,"message":"Books fetched successfully","result":{"data":[{"id":1,"name":"Aut dolorem...","slug":"aut-dolorem-dolore-et-dolor-dicta-asperiores-impedit-asperiores-ducimus-dolore-sed-quidem-in-beatae-accusantium-necessitatibus-eum-neque","image":"images\/product\/50b15b9622f10d20d241d08c55c540b0.png","sell_price":"6178.00"},{"id":2,"name":"Delectus qu...","slug":"delectus-quae-architecto-doloremque-iste-nostrum-et-similique-dolor-vel-porro-iusto-inventore-ea-laudantium-sit-nihil-qui-nam-qui","image":"images\/product\/d18fcf0d968c794c804cc691ac929b99.png","sell_price":"4964.00"},{"id":3,"name":"Dolore dist...","slug":"dolore-distinctio-eos-est-corporis-sit-quos-est-ut-optio-laborum-facere-ad-nemo-adipisci-sequi-adipisci-quae-aut-rerum-minus-accusantium-quae-eos-nulla-est-dignissimos-aut-saepe","image":"images\/product\/27bd761f7c3dd4f28749d781f853de59.png","sell_price":"3339.00"},{"id":4,"name":"Esse molest...","slug":"esse-molestias-error-nisi-at-quia-enim-aut-omnis-ut-sequi-quia-ut-fugit-nihil-nihil-qui-est-qui-aut-illum-quasi-nihil-molestias-non-mollitia-ea-laudantium-necessitatibus","image":"images\/product\/f75ec734c26467be41f9c3703acd7c3b.png","sell_price":"6843.00"},{"id":5,"name":"Quod sed la...","slug":"quod-sed-laboriosam-qui-eaque-hic-quis-non-explicabo-veniam-blanditiis-quae-consequatur-minus-unde-laborum-adipisci-error","image":"images\/product\/851ed31a79cefe798a217f11b4e7e45e.png","sell_price":"8794.00"},{"id":6,"name":"Et commodi...","slug":"et-commodi-iure-voluptatibus-perferendis-omnis-adipisci-et-maiores-non-incidunt-beatae-maxime-ut-in-blanditiis-autem-dicta-enim","image":"images\/product\/3dca75ba8d01b755d69ae2eff1b3d0dd.png","sell_price":"1966.00"},{"id":7,"name":"Laboriosam...","slug":"laboriosam-et-cumque-sed-rerum-veniam-et-quia-recusandae-soluta-sequi-temporibus-pariatur-eum-ullam-ratione-est-facere-excepturi-reiciendis-ratione-quo-ipsa-autem-velit-est-harum-cupiditate","image":"images\/product\/a605887a3f01830c0c9daa5c1ba00130.png","sell_price":"1900.00"},{"id":8,"name":"Tempore nih...","slug":"tempore-nihil-tenetur-soluta-pariatur-nulla-dolorem-iure-suscipit-unde-eius-facere-provident-odit-consequuntur-repellendus-voluptatum-ea-dolor-et-sit-tenetur-corporis-ut","image":"images\/product\/fa17a7810554b988a6d2063f53538a58.png","sell_price":"6054.00"},{"id":9,"name":"Velit repel...","slug":"velit-repellendus-dolorem-vel-ratione-quibusdam-optio-quae-beatae-laboriosam-officiis-dicta-architecto-et-sunt-vel-sint-et-repudiandae","image":"images\/product\/8a8e296cf00879c90628b6518121a8da.png","sell_price":"7377.00"},{"id":10,"name":"Repellat et...","slug":"repellat-et-dolor-est-harum-ad-ducimus-voluptatem-veniam-necessitatibus-provident-incidunt-cumque-tempore-dolor-velit-doloremque-officia-et-odio-ipsam-accusamus-velit-sequi-dolores-dicta","image":"images\/product\/29e18f836837fc4ad2056440816cb77d.png","sell_price":"2603.00"},{"id":11,"name":"Minus illum...","slug":"minus-illum-voluptatibus-a-iure-possimus-quae-molestias-animi-optio-ducimus-dolorum-inventore-necessitatibus-et-sint-quo-dolor-sapiente-iusto-reiciendis-alias-saepe-quisquam","image":"images\/product\/8ac5654cd010df9151bfff4a0f5e0c20.png","sell_price":"7850.00"},{"id":12,"name":"Voluptas au...","slug":"voluptas-aut-aut-ab-explicabo-aut-laboriosam-debitis-quia-unde-corporis-et-qui-deserunt-maiores-laborum","image":"images\/product\/a030a4d2842e7c2b78385678719af466.png","sell_price":"6890.00"},{"id":13,"name":"Hic et volu...","slug":"hic-et-voluptate-architecto-vel-sit-perferendis-consectetur-consequatur-dolores-hic-veniam-sint-accusantium-magnam-asperiores-sint","image":"images\/product\/85072eb7095dab6dba81269e1432a59b.png","sell_price":"1889.00"},{"id":14,"name":"Quia doloru...","slug":"quia-dolorum-ad-reiciendis-rerum-culpa-hic-sint-est-iste-porro-illo-earum-quisquam-ut-ipsa-nemo-et-minus-ut-in-quas-est-sint-laudantium-itaque-provident-nesciunt","image":"images\/product\/0bf70d255afd82b2eaa3f2ee22c2002c.png","sell_price":"5954.00"},{"id":15,"name":"Nihil volup...","slug":"nihil-voluptatem-labore-perferendis-minus-officia-eaque-illo-et-consequatur-nobis-totam-rerum-corporis-inventore-sunt-mollitia-nesciunt-sit-non-porro-perspiciatis-nam-esse-eaque-aut-at-recusandae","image":"images\/product\/0a1dcc54d81adf7febb599d15ba30bbb.png","sell_price":"3896.00"},{"id":16,"name":"Quo ut ut v...","slug":"quo-ut-ut-voluptatem-eius-praesentium-voluptatem-sit-deserunt-et-quos-dolor-ea-et-libero-itaque","image":"images\/product\/dc98683c262267d88d14f3958785049e.png","sell_price":"8188.00"},{"id":17,"name":"Quidem cons...","slug":"quidem-consequatur-occaecati-distinctio-non-quas-debitis-quod-nihil-autem-eius-esse-saepe-perferendis-illo-aliquid-sapiente-voluptatem-suscipit-non-amet-excepturi-eum-deleniti","image":"images\/product\/dc9baaec781f80d58c745cb096c40518.png","sell_price":"1805.00"},{"id":18,"name":"Quibusdam e...","slug":"quibusdam-ea-nobis-et-rerum-quidem-voluptate-repellendus-incidunt-voluptas-suscipit-qui-nobis-quia-beatae-sed-culpa-consequatur-perspiciatis-adipisci-rerum-beatae-voluptatem-fuga","image":"images\/product\/ed81175a76d93722f92f64bd76900a9b.png","sell_price":"4309.00"},{"id":19,"name":"Et mollitia...","slug":"et-mollitia-non-velit-possimus-voluptas-aut-est-fuga-facilis-in-dolore-ducimus-voluptas-sunt-quia-ipsa","image":"images\/product\/3c074c4e065424f73dffffa9ff699b2e.png","sell_price":"7697.00"},{"id":20,"name":"Illo veniam...","slug":"illo-veniam-officia-reprehenderit-consequuntur-et-qui-omnis-alias-sapiente-mollitia-autem-distinctio-facere-qui-quaerat","image":"images\/product\/bd67bff2fe80b1a3ad017086fb594769.png","sell_price":"1052.00"},{"id":21,"name":"Esse accusa...","slug":"esse-accusantium-officia-consequatur-ut-et-eos-assumenda-nemo-corporis-nostrum-suscipit-fuga-adipisci-quam-nostrum","image":"images\/product\/220cd7deb83c6c09ed26e2403af1a674.png","sell_price":"5063.00"},{"id":22,"name":"Aliquid qua...","slug":"aliquid-quam-sed-ad-vero-repellat-iusto-mollitia-quae-omnis-nulla-fugit-doloremque-atque-dolorem-accusamus-sed-eligendi-temporibus-maiores","image":"images\/product\/e3309efbd53917292e68b74c1221425e.png","sell_price":"9238.00"},{"id":23,"name":"Alias quia...","slug":"alias-quia-tenetur-eos-quia-nemo-ducimus-perferendis-minus-sit-ut-possimus-maxime-enim-itaque-reprehenderit-est-et-velit-nostrum","image":"images\/product\/9f5f82789516c52ea075db5ee70c595c.png","sell_price":"7914.00"},{"id":24,"name":"Voluptatem...","slug":"voluptatem-quod-at-doloremque-soluta-eum-minima-sint-officia-ab-repellat-corporis-nostrum-necessitatibus-voluptates-exercitationem-rem-odio-culpa-expedita-velit-dolorum-corporis","image":"images\/product\/cc6f04ee9f157c68e4406890a0e05c2b.png","sell_price":"5444.00"},{"id":25,"name":"Harum solut...","slug":"harum-soluta-voluptas-dolore-est-ipsum-et-nesciunt-at-possimus-est-fugiat-quidem-nemo-cum-perspiciatis-ex-temporibus-autem-minus-architecto-autem-sint-aut-excepturi-id-aut-itaque-non","image":"images\/product\/7e4c775441b3d669a171a58d07adad96.png","sell_price":"1455.00"},{"id":26,"name":"Ex omnis id...","slug":"ex-omnis-id-ducimus-voluptatem-vero-numquam-sequi-quos-praesentium-sapiente-iste-aut-sit-veniam-qui-et-ad-voluptas-omnis-maxime-similique","image":"images\/product\/f4bb9614d43533fd3e8253123b6bee1d.png","sell_price":"2764.00"},{"id":27,"name":"Atque dolor...","slug":"atque-dolorum-qui-maxime-odio-iure-sint-aut-dolores-voluptatibus-qui-quo-et-aperiam-nisi","image":"images\/product\/816e60f846cc6736f69eb88beb2ed0fb.png","sell_price":"2791.00"},{"id":28,"name":"Labore et n...","slug":"labore-et-nihil-occaecati-officia-architecto-molestias-repudiandae-ad-ea-repellat-corrupti-aliquam-et","image":"images\/product\/5d467977ace88d761cb57308b68ac1db.png","sell_price":"3016.00"},{"id":29,"name":"Velit omnis...","slug":"velit-omnis-et-velit-suscipit-unde-placeat-similique-nobis-rerum-iusto-officia-consectetur-vel-qui-eveniet-delectus-expedita-molestias-sed-officia-sed-tenetur-ut-aliquam","image":"images\/product\/476fdbd1f43e97ddc5e254aa8ad44ad7.png","sell_price":"7755.00"},{"id":30,"name":"Est numquam...","slug":"est-numquam-voluptate-similique-fuga-qui-maxime-omnis-illo","image":"images\/product\/fd08c2bd38204f24eec9b022ed1273a1.png","sell_price":"9342.00"},{"id":31,"name":"Minima vel...","slug":"minima-vel-assumenda-consequatur-velit-aliquid-quasi-quia-est-explicabo-ut-odio-voluptatibus-et-quibusdam-natus-et-ea-impedit-velit-et-molestiae-eum","image":"images\/product\/8de40fc154bfd65add2bf170051b8a90.png","sell_price":"2585.00"},{"id":32,"name":"Omnis repud...","slug":"omnis-repudiandae-libero-minima-vitae-velit-molestiae-qui-ipsa-qui-accusamus-consequatur-ipsa-non-et-labore-qui-sint-et","image":"images\/product\/38c6e5e6c8916f21ddcfaba4fea93234.png","sell_price":"7642.00"},{"id":33,"name":"Nostrum eos...","slug":"nostrum-eos-repellat-fugit-dignissimos-soluta-rerum-rerum-eligendi-aut-modi-incidunt-enim","image":"images\/product\/e5558ab188a426225c62802518177607.png","sell_price":"6724.00"},{"id":34,"name":"Quos magni...","slug":"quos-magni-soluta-aut-necessitatibus-aut-voluptatem-vel-tenetur-sapiente-provident-odit-repellat-porro-sunt-nemo-sint-dolorem-saepe-corporis-illo-pariatur-sunt-ut-quae-dignissimos","image":"images\/product\/0c4d6425ef2f9cb543f5e71b58b93959.png","sell_price":"5480.00"},{"id":35,"name":"Aut quia ul...","slug":"aut-quia-ullam-nemo-est-eos-accusantium-quos-ea-sit-sequi-aut-reprehenderit-aut-nostrum-error-cupiditate-qui-eveniet-magnam-adipisci-ut-atque-id-dolorem-fugit-voluptatem-autem-dolores","image":"images\/product\/fe93b3e5b4c5d9f28c2a067cce0e16fe.png","sell_price":"8128.00"},{"id":36,"name":"Molestiae i...","slug":"molestiae-ipsa-est-nobis-natus-odio-voluptates-voluptatum-ipsa-saepe-sit-dolor-temporibus-provident-veniam-ut-inventore-dolores-ea-pariatur","image":"images\/product\/a330bc88fc882644b9d7b576ec54110e.png","sell_price":"4293.00"},{"id":37,"name":"Et reiciend...","slug":"et-reiciendis-voluptas-est-beatae-ratione-eum-sunt-dolor-rem-animi-voluptatibus-ex-illum-aut-voluptatum-hic-nihil-mollitia-non-voluptatem-unde-aspernatur-facilis-dolorem-et","image":"images\/product\/c234b59ea55e9ff0b9df76656c9252ac.png","sell_price":"2244.00"},{"id":38,"name":"Illum cumqu...","slug":"illum-cumque-doloremque-ea-libero-quam-consequuntur-ad-pariatur-quasi-nobis-sunt-ut-fuga-expedita-expedita-vel-minima-fuga-velit-sit-optio-at-numquam-qui-mollitia-quibusdam","image":"images\/product\/b847e110e4ab121fbdac9a19f04ef04f.png","sell_price":"2692.00"},{"id":39,"name":"Quis labori...","slug":"quis-laboriosam-reiciendis-quidem-deleniti-soluta-error-provident-tenetur-et-nihil-quibusdam-illo-quidem-qui-doloremque-et-id-voluptas-sed-sint-molestiae-consequatur-iusto-incidunt-est-quisquam","image":"images\/product\/8856efd540a8989d6b5005d6d474f094.png","sell_price":"6983.00"},{"id":40,"name":"Officiis mo...","slug":"officiis-molestiae-explicabo-accusantium-placeat-sit-explicabo-nesciunt-et-reprehenderit-fugit-non-consequatur-saepe-dolor-laborum-repellat-aut-et-ducimus-labore-quia-eum","image":"images\/product\/f579bf9f4f1e78c58e3835019e400a23.png","sell_price":"1294.00"}],"links":{"first":"http:\/\/ecommerce.test\/api\/v1\/get-books?page=1","last":"http:\/\/ecommerce.test\/api\/v1\/get-books?page=3","prev":null,"next":"http:\/\/ecommerce.test\/api\/v1\/get-books?page=2"},"meta":{"current_page":1,"from":1,"last_page":3,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/ecommerce.test\/api\/v1\/get-books?page=1","label":"1","active":true},{"url":"http:\/\/ecommerce.test\/api\/v1\/get-books?page=2","label":"2","active":false},{"url":"http:\/\/ecommerce.test\/api\/v1\/get-books?page=3","label":"3","active":false},{"url":"http:\/\/ecommerce.test\/api\/v1\/get-books?page=2","label":"Next &raquo;","active":false}],"path":"http:\/\/ecommerce.test\/api\/v1\/get-books","per_page":40,"to":40,"total":100}}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '52'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/user
     metadata:
       groupName: Endpoints
       groupDescription: ''

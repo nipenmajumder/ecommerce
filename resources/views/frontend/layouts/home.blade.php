@@ -68,7 +68,7 @@
                 @endif
             </div>
             <div class="text-center mt-3">
-                <a>
+                <a href="{{route('subject.book', $category->slug)}}">
                     <button type="button" class="btn btn-warning w-25">এই বিষয়ে সকল প্রকাশিত সকল বই</button>
                 </a>
             </div>

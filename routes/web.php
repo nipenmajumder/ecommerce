@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\AuthorBooksController;
 use App\Http\Controllers\Frontend\BookDetailsController;
+use App\Http\Controllers\Frontend\BooksController;
 use App\Http\Controllers\Frontend\CategoryBooksController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PublicationBooksController;
@@ -23,7 +24,7 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('subjects', \App\Http\Controllers\Frontend\CategoryController::class)->name('subjects');
 Route::get('publications', \App\Http\Controllers\Frontend\PublicationController::class)->name('publications');
 Route::get('authors', \App\Http\Controllers\Frontend\AuthorController::class)->name('authors');
-
+Route::get('books', BooksController::class)->name('books');
 
 Route::get('author/{slug}', AuthorBooksController::class)->name('author.book');
 Route::get('subject/{slug}', CategoryBooksController::class)->name('subject.book');
