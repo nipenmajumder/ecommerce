@@ -44,8 +44,14 @@
                             30%<br>ছাড়
                         </span>
                             <div class="card-body">
-                                <h5 class="card-title fs-6">{{Str::limit($book->name,13)}}</h5>
-                                <p class="card-text text-body-secondary fs-6">{{Str::limit($book->author?->name,13)}}</p>
+                                <a href="{{route('book-details-slug',$book->slug)}}"
+                                   class="text-decoration-none text-black font-bold">
+                                    <h5 class="card-title fs-6">{{Str::limit($book->name,11)}}</h5>
+                                </a>
+                                <a href="{{route('author.book',$book->author?->slug)}}"
+                                   class="text-decoration-none text-black font-bold">
+                                    <p class="card-text text-body-secondary fs-6">{{Str::limit($book->author?->name,13)}}</p>
+                                </a>
                                 <p class="card-text">
                                     <span class="text-decoration-line-through">460 ৳</span>
                                     <span class="text-danger">322 ৳</span>
@@ -62,7 +68,9 @@
                 @endif
             </div>
             <div class="text-center mt-3">
-                <button type="button" class="btn btn-warning w-25">সকল নতুন প্রকাশিত বই</button>
+                <a>
+                    <button type="button" class="btn btn-warning w-25">এই বিষয়ে সকল প্রকাশিত সকল বই</button>
+                </a>
             </div>
         </section>
     @endforeach
