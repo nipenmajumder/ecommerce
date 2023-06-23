@@ -34,7 +34,7 @@
                 <a class="nav-link text-secondary-emphasis" aria-current="page" href="{{route('home')}}">হোম</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-secondary-emphasis" href="#">বই</a>
+                <a class="nav-link text-secondary-emphasis" href="{{route('books')}}">বই</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-secondary-emphasis" href="{{route('subjects')}}">বিষয়</a>
