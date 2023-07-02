@@ -49,6 +49,7 @@
 
 @include('frontend.layouts.navbar')
 <main class="container">
+    <x-loader></x-loader>
     @yield('content')
 </main>
 @include('frontend.layouts.footer')

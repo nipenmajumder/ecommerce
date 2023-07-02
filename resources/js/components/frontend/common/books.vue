@@ -48,9 +48,10 @@
                         <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">সর্ট করুন</label>
                         <div class="col-sm-9">
                             <div class="select-wrapper">
-                                <select id="inputState" class="form-select">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
+                                <select class="form-select" v-model="sort">
+                                    <option selected :value="{}">Choose...</option>
+                                    <option v-for="option in sortingOptions" :value="option.value">{{ option.name }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -58,27 +59,39 @@
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-                <div class="col-md-3" v-for="(product, index) in products.data" :key="product.id">
+                <div class="col-md-3" v-if="products.data.length > 0" v-for="(product, index) in products.data"
+                     :key="product.id">
                     <div class="card h-100">
-<!--                        <img :src="`/${product.image}`" class="card-img-top" alt="...">-->
-<!--                        <span class="position-absolute top-0 start-25 translate-middle badge bg-danger p-2 mt-2">30% ছাড়</span>-->
-                        <img :src="`/${product.image}`" class="card-img-top" alt="..."><span
-                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
-                                <br>
-                                ছাড়</span>
+                        <a :href="route('book-details-slug',product.slug)" class="text-decoration-none text-black">
+                            <img :src="`/${product.image}`" class="card-img-top" alt="...">
+                        </a>
+                        <span
+                            class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">
+                            30%<br>
+                            ছাড়
+                        </span>
                         <div class="card-body">
-                            <h5 class="card-title fs-6">{{ product.name }}</h5>
-                            <p class="card-text text-muted fs-6">আবদুল্লাহ আল মাসউদ</p>
+                            <a :href="route('book-details-slug',product.slug)" class="text-decoration-none text-black">
+                                <h5 class="card-title fs-6">{{ product.name }}</h5>
+                            </a>
+
+                            <a :href="route('author.book',product.author.slug)" class="text-decoration-none text-black">
+                                <p class="card-text text-muted fs-6">{{ product?.author?.name }}</p>
+                            </a>
                             <p class="card-text">
-<!--                                <span class="text-decoration-line-through">-->
-<!--                                    {{ product.sell_price }} ৳-->
-<!--                                </span> -->
+                                <!--                                <span class="text-decoration-line-through">-->
+                                <!--                                    {{ product.sell_price }} ৳-->
+                                <!--                                </span> -->
                                 <span class="text-danger">{{ product.sell_price }} ৳</span>
                             </p>
                         </div>
                     </div>
                 </div>
-
+                <div class="col-md-12" v-else>
+                    <div class="text-center">
+                        কোনো বই পাওয়া যায়নি
+                    </div>
+                </div>
             </div>
             <pagination :data="products" :limit="10" :align="'center'"
                         @pagination-change-page="getPaginatedProducts($event)"/>
@@ -99,6 +112,37 @@ export default defineComponent({
             selectedAuthors: [],
             selectedCategories: [],
             selectedPublications: [],
+            sort: '',
+            sortingOptions: [
+                {value: 'asc', name: 'Price: Low to High'},
+                {value: 'desc', name: 'Price: High to Low'},
+            ],
+        }
+    },
+    watch: {
+        selectedAuthors: function () {
+            this.getProducts({
+                page: 1,
+                category: this.selectedCategories.join(','),
+                author: this.selectedAuthors.join(','),
+                publication: this.selectedPublications.join(',')
+            });
+        },
+        selectedCategories: function () {
+            this.getProducts({
+                page: 1,
+                category: this.selectedCategories.join(','),
+                author: this.selectedAuthors.join(','),
+                publication: this.selectedPublications.join(',')
+            });
+        },
+        selectedPublications: function () {
+            this.getProducts({
+                page: 1,
+                category: this.selectedCategories.join(','),
+                author: this.selectedAuthors.join(','),
+                publication: this.selectedPublications.join(',')
+            });
         }
     },
     methods: {
@@ -132,13 +176,22 @@ export default defineComponent({
                     console.log(error)
                 })
         },
-        getProducts({page = 1,}) {
+        getProducts({
+                        page = 1,
+                        category = null,
+                        author = null,
+                        publication = null,
+                    }) {
             this.loader(true);
-            axios.get(route('get-books-data'), {
-                params: {
-                    page,
-                }
-            })
+            axios
+                .get(route('get-books-data'), {
+                    params: {
+                        page,
+                        category: category,
+                        author: author,
+                        publication: publication,
+                    },
+                })
                 .then((response) => {
                     this.loader(false);
                     this.products = response.data.result;
@@ -146,8 +199,8 @@ export default defineComponent({
                 .catch((error) => {
                     this.loader(false);
                     toastr.error(error);
-                    console.log(error)
-                })
+                    console.log(error);
+                });
         },
         getPaginatedProducts(page) {
             this.getProducts({page: page});
