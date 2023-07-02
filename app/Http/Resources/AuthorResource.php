@@ -17,6 +17,7 @@ class AuthorResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'book_count' => $this->whenCounted('books'),
         ];
     }

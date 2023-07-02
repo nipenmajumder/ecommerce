@@ -68,7 +68,6 @@ export default {
                 }, 500);
             }
         },
-
         scrollToTop: function () {
             window.scrollTo(0, 0);
         },
