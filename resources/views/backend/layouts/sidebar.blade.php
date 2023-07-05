@@ -115,5 +115,11 @@
                 <div>Orders</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('role.index')}}" class="menu-link">
+                <i class='menu-icon bx bxs-message-square'></i>
+                <div>Role</div>
+            </a>
+        </li>
     </ul>
 </aside>

@@ -14,7 +14,8 @@
                         <a href="{{route('author.book',$book->author->slug)}}" class="text-decoration-none bg-white">
                             <p class="text-danger">লেখক: {{$book->author->name}}</p>
                         </a>
-                        <a href="{{route('publication.book',$book->publication->slug)}}" class="text-decoration-none bg-white">
+                        <a href="{{route('publication.book',$book->publication->slug)}}"
+                           class="text-decoration-none bg-white">
                             <p class="text-danger">প্রকাশনী: {{$book->publication->name}}</p>
                         </a>
                         <a href="{{route('subject.book',$book->category->slug)}}" class="text-decoration-none bg-white">
@@ -26,8 +27,9 @@
                             <del>460</del>
                             ৳(30% ছাড়ে)
                         </h4>
-                        <button type="button" class="btn btn-danger mt-2">অর্ডার করুন</button>
-                        <button type="button" class="btn btn-warning mt-2">একটু পড়ে দেখুন</button>
+                        <a class="text-decoration-none" href="{{route('cart.create',['product_id'=>$book->id])}}">
+                            <button type="button" class="btn btn-danger mt-2">অর্ডার করুন</button>
+                        </a>
                     </div>
 
                     <p class="fs-6 border p-2 mt-3">যে পণ্যগুলি দেখেছেন</p>
@@ -57,25 +59,25 @@
             <div class="col-md-3">
                 <h6 class="mb-3">আরো দেখুন…</h6>
                 @foreach($relatedBooks as $relatedBook)
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{{asset('frontend/image/banner/rukiyah-02-192x254.webp')}}"
-                                 class="img-fluid m-2 rounded-start"
-                                 alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h6 class="card-title">
-                                    দাখিল শর্ট হ্যান্ড বুলেটিন – ২০২৩</h6>
-                                <p class="card-text"><small class="text-body-secondary">আলোর দিশারী
-                                        পাবলিকেশন্স</small></p>
-                                <p class="card-text"><small class="text-body-secondary ">220 ৳</small>
-                                </p>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{asset('frontend/image/banner/rukiyah-02-192x254.webp')}}"
+                                     class="img-fluid m-2 rounded-start"
+                                     alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        দাখিল শর্ট হ্যান্ড বুলেটিন – ২০২৩</h6>
+                                    <p class="card-text"><small class="text-body-secondary">আলোর দিশারী
+                                            পাবলিকেশন্স</small></p>
+                                    <p class="card-text"><small class="text-body-secondary ">220 ৳</small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>

@@ -9,10 +9,12 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\PublicationController;
 use App\Http\Controllers\Backend\PurchaseController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\AuthorBooksController;
 use App\Http\Controllers\Frontend\BookDetailsController;
 use App\Http\Controllers\Frontend\BooksController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CategoryBooksController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PublicationBooksController;
@@ -33,7 +35,11 @@ Route::get('publication/{slug}', PublicationBooksController::class)->name('publi
 
 Route::get('book-details/{slug}', BookDetailsController::class)->name('book-details-slug');
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+
+Route::resource('cart', CartController::class)
+    ->middleware(['auth', 'role:customer']);
+
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
     Route::resource('slider', SliderController::class);
     Route::resource('category', CategoryController::class);
@@ -41,8 +47,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('publication', PublicationController::class);
     Route::resource('product', ProductController::class);
     Route::resource('purchase', PurchaseController::class)->except(['edit', 'update']);
-    Route::post('barcode-wise-product', BarcodeWiseProduct::class)->name('barcode-wise-product');
     Route::resource('order', OrderController::class);
+    Route::resource('role', RoleController::class);
+
+
+    Route::post('barcode-wise-product', BarcodeWiseProduct::class)->name('barcode-wise-product');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
