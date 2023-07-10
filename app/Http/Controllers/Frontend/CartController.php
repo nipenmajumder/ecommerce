@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -23,17 +22,7 @@ class CartController extends Controller
      */
     public function create(Request $request)
     {
-        $product = Product::find($request->product_id);
-        \Cart::session(auth()->id())->add(array(
-            'id' => 1,
-            'name' => $product->name,
-            'price' => $product->sell_price,
-            'quantity' => 4,
-            'attributes' => array(),
-            'associatedModel' => $product
-        ));
-        $items = \Cart::getContent();
-        dd($items->toArray());
+
     }
 
     /**

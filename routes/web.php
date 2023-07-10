@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\PublicationController;
 use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\AuthorBooksController;
 use App\Http\Controllers\Frontend\BookDetailsController;
@@ -49,6 +50,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('purchase', PurchaseController::class)->except(['edit', 'update']);
     Route::resource('order', OrderController::class);
     Route::resource('role', RoleController::class);
+    Route::resource('settings', SettingsController::class)->only(['index', 'store']);
 
 
     Route::post('barcode-wise-product', BarcodeWiseProduct::class)->name('barcode-wise-product');

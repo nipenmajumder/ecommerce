@@ -121,5 +121,11 @@
                 <div>Role</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('settings.index')}}" class="menu-link">
+                <i class='menu-icon bx bxs-cog'></i>
+                <div>Settings</div>
+            </a>
+        </li>
     </ul>
 </aside>
