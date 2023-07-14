@@ -14,7 +14,8 @@
                         <a href="{{route('author.book',$book->author->slug)}}" class="text-decoration-none bg-white">
                             <p class="text-danger">লেখক: {{$book->author->name}}</p>
                         </a>
-                        <a href="{{route('publication.book',$book->publication->slug)}}" class="text-decoration-none bg-white">
+                        <a href="{{route('publication.book',$book->publication->slug)}}"
+                           class="text-decoration-none bg-white">
                             <p class="text-danger">প্রকাশনী: {{$book->publication->name}}</p>
                         </a>
                         <a href="{{route('subject.book',$book->category->slug)}}" class="text-decoration-none bg-white">
@@ -26,8 +27,9 @@
                             <del>460</del>
                             ৳(30% ছাড়ে)
                         </h4>
-                        <button type="button" class="btn btn-danger mt-2">অর্ডার করুন</button>
-                        <button type="button" class="btn btn-warning mt-2">একটু পড়ে দেখুন</button>
+                        <a class="text-decoration-none" onclick="addToCart()">
+                            <button type="button" class="btn btn-danger mt-2">অর্ডার করুন</button>
+                        </a>
                     </div>
 
                     <p class="fs-6 border p-2 mt-3">যে পণ্যগুলি দেখেছেন</p>
@@ -36,16 +38,23 @@
                             <div class="col-md-3">
                                 <div class="card h-100">
                                     <img
-                                        src="{{asset('frontend/image/banner/340821389_149637451389361_395511-192x254.webp')}}"
+                                        src="{{asset($publicationBook->image)}}"
                                         class="card-img-top" alt="..."><span
                                         class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
                                         <br>
                                         ছাড়</span>
                                     <div class="card-body">
-                                        <h5 class="card-title fs-6">রুকইয়াহ</h5>
-                                        <p class="card-text text-body-secondary fs-6">আবদুল্লাহ আল মাসউদ</p>
+                                        <a href="{{route('book-details-slug',$publicationBook->slug)}}"
+                                           class="text-decoration-none text-black ">
+                                            <h5 class="card-title fs-6">{{Str::limit($publicationBook->name,20)}}</h5>
+                                        </a>
+                                        <a href="{{route('author.book',$publicationBook->author->slug)}}"
+                                           class="text-decoration-none bg-white">
+                                            <p class="card-text text-body-secondary fs-6">
+                                                লেখক: {{$publicationBook->author->name}}</p>
+                                        </a>
                                         <p class="card-text"><span class="text-decoration-line-through">460 ৳</span>
-                                            <span class="text-danger">322 ৳</span>
+                                            <span class="text-danger">{{$publicationBook->sell_price}} ৳</span>
                                         </p>
                                     </div>
                                 </div>
@@ -57,27 +66,56 @@
             <div class="col-md-3">
                 <h6 class="mb-3">আরো দেখুন…</h6>
                 @foreach($relatedBooks as $relatedBook)
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{{asset('frontend/image/banner/rukiyah-02-192x254.webp')}}"
-                                 class="img-fluid m-2 rounded-start"
-                                 alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h6 class="card-title">
-                                    দাখিল শর্ট হ্যান্ড বুলেটিন – ২০২৩</h6>
-                                <p class="card-text"><small class="text-body-secondary">আলোর দিশারী
-                                        পাবলিকেশন্স</small></p>
-                                <p class="card-text"><small class="text-body-secondary ">220 ৳</small>
-                                </p>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{asset($relatedBook->image)}}"
+                                     class="img-fluid m-2 rounded-start"
+                                     alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a class="text-decoration-none text-black"
+                                       href="{{route('book-details-slug',$relatedBook->slug)}}">
+                                        <h6 class="card-title text-black">{{Str::limit($relatedBook->name,15)}}</h6>
+                                    </a>
+                                    <p class="card-text">
+                                        <a class="text-decoration-none text-black"
+                                           href="{{route('publication.book',$relatedBook->publication->slug)}}">
+                                            <small
+                                                class="text-body-secondary">{{$relatedBook->publication->name}}</small>
+                                        </a>
+                                    </p>
+                                    <p class="card-text"><small
+                                            class="text-body-secondary ">{{$relatedBook->sell_price}} ৳</small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        function addToCart() {
+            {{--if ({{$book->total_stock=== 0}}) {--}}
+            {{--    alert('দুঃখিত, পণ্যটি স্টকে নেই');--}}
+            {{--    return;--}}
+            {{--}--}}
+            loader(true);
+            axios.post('{{route('cart.store')}}', {
+                product: {!! json_encode(Arr::except($book, ['author', 'publication', 'category'])) !!},
+            })
+                .then(response => {
+                    loader(false);
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    </script>
+@endpush

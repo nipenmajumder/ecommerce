@@ -56,7 +56,8 @@
                     </g>
                     </svg>
                 </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Ecommerce</span>
+            <span
+                class="app-brand-text demo menu-text fw-bolder ms-2">{{cache()->get('settings.toArray')['site_name']}}</span>
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
@@ -113,6 +114,18 @@
             <a href="{{route('order.index')}}" class="menu-link">
                 <i class='menu-icon bx bxs-message-square'></i>
                 <div>Orders</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{route('role.index')}}" class="menu-link">
+                <i class='menu-icon bx bxs-message-square'></i>
+                <div>Role</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{route('settings.index')}}" class="menu-link">
+                <i class='menu-icon bx bxs-cog'></i>
+                <div>Settings</div>
             </a>
         </li>
     </ul>

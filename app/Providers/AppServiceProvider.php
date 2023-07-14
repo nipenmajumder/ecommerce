@@ -21,7 +21,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-//        JsonResource::withoutWrapping();
+        $cart = [
+            'items' => [],
+            'total' => 0.00,
+            'vat' => 0.00,
+            'discount' => 0.00,
+            'sub_total' => 0.00,
+            'grand_total' => 0.00,
+            'count' => 0,
+        ];
         Paginator::useBootstrapFive();
+        session(['cart' => $cart]);
     }
 }
