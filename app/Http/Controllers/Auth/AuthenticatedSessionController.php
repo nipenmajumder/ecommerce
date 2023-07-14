@@ -33,6 +33,9 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('dashboard');
         } elseif (auth()->user()->hasRole('customer')) {
             return redirect()->route('home');
+        } else {
+            auth()->logout();
+            return redirect()->route('login');
         }
     }
 
