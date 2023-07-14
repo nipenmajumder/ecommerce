@@ -11,7 +11,6 @@
     @include('frontend.layouts.css')
     @vite([ 'resources/js/app.js'])
     @stack('css')
-
     <style>
         .cart-icon {
             position: fixed;

@@ -19,9 +19,12 @@
                         @guest
                             <a class="nav-link" href="{{route('login')}}">লগইন/রেজিস্টার</a>
                         @endguest
-                        @auth
+                        @role('admin')
                             <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
-                        @endauth
+                        @endrole
+                        @role('customer')
+                         <a class="nav-link" href="#">Dashboard</a>
+                        @endrole
                     </li>
                 </ul>
             </div>

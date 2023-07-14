@@ -1,3 +1,4 @@
+
 import './bootstrap';
 import {createApp} from 'vue'
 import {ZiggyVue} from '../../vendor/tightenco/ziggy/dist/vue.m';

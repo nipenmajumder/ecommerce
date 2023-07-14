@@ -16,7 +16,7 @@ class Settings extends Model
      *
      * @return self
      */
-    public static function getAllSettings(): Settings
+    public static function getAllSettings()
     {
         return Cache::rememberForever('settings.all', static function () {
             return self::select(['key', 'value'])->get();

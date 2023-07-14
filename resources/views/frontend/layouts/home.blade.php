@@ -54,7 +54,7 @@
                                 </a>
                                 <p class="card-text">
                                     <span class="text-decoration-line-through">460 ৳</span>
-                                    <span class="text-danger">322 ৳</span>
+                                    <span class="text-danger">{{$book->sell_price}} ৳</span>
                                 </p>
                             </div>
                         </div>
