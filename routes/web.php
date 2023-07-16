@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\BookDetailsController;
 use App\Http\Controllers\Frontend\BooksController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CategoryBooksController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PublicationBooksController;
 use App\Http\Controllers\ProfileController;
@@ -28,17 +29,12 @@ Route::get('subjects', \App\Http\Controllers\Frontend\CategoryController::class)
 Route::get('publications', \App\Http\Controllers\Frontend\PublicationController::class)->name('publications');
 Route::get('authors', \App\Http\Controllers\Frontend\AuthorController::class)->name('authors');
 Route::get('books', BooksController::class)->name('books');
-
 Route::get('author/{slug}', AuthorBooksController::class)->name('author.book');
 Route::get('subject/{slug}', CategoryBooksController::class)->name('subject.book');
 Route::get('publication/{slug}', PublicationBooksController::class)->name('publication.book');
-
-
 Route::get('book-details/{slug}', BookDetailsController::class)->name('book-details-slug');
-
-
-Route::resource('cart', CartController::class)
-    ->middleware(['auth', 'role:customer']);
+Route::resource('cart', CartController::class)->middleware(['web'])->only(['index', 'store', 'update', 'destroy']);
+Route::resource('checkout', CheckoutController::class)->middleware(['auth', 'role:customer']);
 
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
