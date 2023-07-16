@@ -1,5 +1,6 @@
 
 import './bootstrap';
+import Alpine from 'alpinejs'
 import {createApp} from 'vue'
 import {ZiggyVue} from '../../vendor/tightenco/ziggy/dist/vue.m';
 import mixin from "./mixins/mixin";
@@ -12,12 +13,13 @@ import Index from "./components/product/index.vue";
 import CreatePurchase from "./components/purchase/Purchase.vue";
 import Books from "./components/frontend/common/books.vue";
 
+window.Alpine = Alpine
+Alpine.start()
+
 const app = createApp({});
 app.use(ZiggyVue, Ziggy);
 app.component("pagination", Bootstrap5Pagination);
 app.component("v-select", vSelect);
-
-
 app.component('create-product', Create);
 app.component('edit-product', Edit);
 app.component('product-list', Index);

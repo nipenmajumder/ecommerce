@@ -107,14 +107,15 @@
             {{--}--}}
             loader(true);
             axios.post('{{route('cart.store')}}', {
-                product: {!! json_encode(Arr::except($book, ['author', 'publication', 'category'])) !!},
+                product: {!! json_encode(Arr::except($book, ['author', 'publication', 'category'])) !!}
             })
                 .then(response => {
                     loader(false);
-                    console.log(response);
+                    toastr.success(response.data.message);
+                    document.dispatchEvent(new CustomEvent('added-to-cart'));
                 })
                 .catch(error => {
-                    console.error(error);
+                    toastr.error(error.response.data.message);
                 });
         }
     </script>

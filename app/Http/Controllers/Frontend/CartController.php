@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -14,8 +12,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return session()->get('cart');
-
+        return $this->respondSuccess(session()->get('cart'), 'Cart items');
     }
 
     /**
@@ -33,99 +30,29 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-//        try {
-//            $cart = session()->get('cart');
-//            $productId = $request->product['id'];
-//            $vat = $request->product['sell_price'] * cache()->get('settings.toArray')['vat_percentage'] / 100;
-//
-//            if (isset($cart['items'][$productId])) {
-//                // If the product already exists in the cart, increase the quantity by one
-//                $cart['items'][$productId]['quantity'] += 1;
-//                $cart['total'] += $request->product['sell_price'];
-//                $cart['vat'] += $vat;
-//                $cart['discount'] += $request->product['discount'] ?? 0.00;
-//                $cart['sub_total'] += $request->product['sell_price'] + $vat;
-//                $cart['grand_total'] += $cart['sub_total'] - ($request->product['discount'] ?? 0.00);
-//            } else {
-//                // If the product does not exist in the cart, add it as a new item
-//                $cart['items'][$productId] = [
-//                    ...$request->product,
-//                    'quantity' => 1,
-//                ];
-//                $cart['count'] += 1;
-//                // Update other cart values (total, vat, discount, sub_total, grand_total) accordingly
-//                $cart['total'] += $request->product['sell_price'];
-//                $cart['vat'] += $vat;
-//                $cart['discount'] += $request->product['discount'] ?? 0.00;
-//                $cart['sub_total'] += $request->product['sell_price'] + $vat;
-//                $cart['grand_total'] += $cart['sub_total'] - ($request->product['discount'] ?? 0.00);
-//            }
-//
-//            session()->put('cart', $cart);
-//            $this->respondSuccess($cart, $request->product['name'] . ' added to cart successfully.');
-//        } catch (\Exception $e) {
-//            $this->respondError($e->getMessage());
-//        }
         try {
             $cart = session()->get('cart');
-            $productId = $request->product['id'];
-
-//            if (isset($cart['items'][$productId])) {
-//                // If the product already exists in the cart, increase the quantity by one
-//                $cart['items'][$productId]['quantity'] += 1;
-//
-//                // Update other cart values based on the increased quantity
-//                $vat = $request->product['sell_price'] * cache()->get('settings.toArray')['vat_percentage'] / 100;
-//                $cart['total'] += $request->product['sell_price'];
-//                $cart['vat'] += $vat;
-//                $cart['discount'] += $request->product['discount'] ?? 0.00;
-//                $cart['sub_total'] += $request->product['sell_price'] + $vat;
-//                $cart['grand_total'] += $cart['sub_total'] - ($request->product['discount'] ?? 0.00);
-//            } else {
-//                // If the product does not exist in the cart, add it as a new item
-//                $vat = $request->product['sell_price'] * cache()->get('settings.toArray')['vat_percentage'] / 100;
-//                $cart['items'][$productId] = [
-//                    ...$request->product,
-//                    'quantity' => 1,
-//                ];
-//                $cart['count'] += 1;
-//                // Update other cart values (total, vat, discount, sub_total, grand_total) accordingly
-//                $cart['total'] += $request->product['sell_price'];
-//                $cart['vat'] += $vat;
-//                $cart['discount'] += $request->product['discount'] ?? 110.00;
-//                $cart['sub_total'] += $request->product['sell_price'] + $vat;
-//                $cart['grand_total'] += $cart['sub_total'] - ($request->product['discount'] ?? 110.00);
-//            }
-            if (isset($cart['items'][$productId])) {
-                // If the product already exists in the cart, increase the quantity by one
-                $cart['items'][$productId]['quantity'] += 1;
-
-                // Update other cart values based on the increased quantity
-                $vat = $request->product['sell_price'] * cache()->get('settings.toArray')['vat_percentage'] / 100;
-                $cart['total'] += $request->product['sell_price'];
-                $cart['vat'] += $vat;
-                $cart['discount'] += $request->product['discount'] ?? 0.00;
-                $cart['sub_total'] += $request->product['sell_price'] + $vat;
+            $product = $request->product;
+            $vatPercentage = cache()->get('settings.toArray')['vat_percentage'] ?? 7.5;
+            if (isset($cart['items'][$product['id']])) {
+                $cart['items'][$product['id']]['quantity'] += 1;
+                $vat = ceil($product['sell_price'] * $vatPercentage / 100);
             } else {
-                // If the product does not exist in the cart, add it as a new item
-                $vat = $request->product['sell_price'] * cache()->get('settings.toArray')['vat_percentage'] / 100;
-                $cart['items'][$productId] = [
-                    ...$request->product,
+                $vat = ceil($product['sell_price'] * $vatPercentage / 100);
+                $cart['items'][$product['id']] = [
+                    ...$product,
                     'quantity' => 1,
                 ];
                 $cart['count'] += 1;
-                // Update other cart values (total, vat, discount, sub_total) accordingly
-                $cart['total'] += $request->product['sell_price'];
-                $cart['vat'] += $vat;
-                $cart['discount'] += $request->product['discount'] ?? 0.00;
-                $cart['sub_total'] += $request->product['sell_price'] + $vat;
             }
-
+            $cart['total'] += $product['sell_price'];
+            $cart['vat'] += $vat;
+            $cart['discount'] += $product['discount'] ?? 0.00;
+            $cart['sub_total'] += $product['sell_price'] + $vat;
             $cart['grand_total'] = $cart['sub_total'] - ($cart['discount'] ?? 0.00);
 
-
             session()->put('cart', $cart);
-            return $this->respondSuccess($cart, $request->product['name'] . ' added to cart successfully.');
+            return $this->respondSuccess($cart, $product['name'] . ' added to cart successfully.');
         } catch (\Exception $e) {
             return $this->respondError($e->getMessage());
         }
@@ -161,6 +88,31 @@ class CartController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $cart = session()->get('cart');
+
+            if (isset($cart['items'][$id])) {
+                $product = $cart['items'][$id];
+                $vatPercentage = cache()->get('settings.toArray')['vat_percentage'] ?? 7.5;
+                $vat = ceil($product['sell_price'] * $vatPercentage / 100);
+
+                $cart['total'] -= $product['sell_price'];
+                $cart['vat'] -= $vat;
+                $cart['discount'] -= $product['discount'] ?? 0.00;
+                $cart['sub_total'] -= $product['sell_price'] + $vat;
+                $cart['grand_total'] = $cart['sub_total'] - ($cart['discount'] ?? 0.00);
+
+                unset($cart['items'][$id]);
+                $cart['count'] -= 1;
+
+                session()->put('cart', $cart);
+                return $this->respondSuccess($cart, $product['name'] . ' removed from cart successfully.');
+            } else {
+                return $this->respondError('Item not found in cart.');
+            }
+        } catch (\Exception $e) {
+            return $this->respondError($e->getMessage());
+        }
     }
+
 }
