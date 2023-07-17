@@ -92,19 +92,19 @@
                     <tbody>
                     <tr>
                         <th>Subtotal:</th>
-                        <td>$<span x-text="cart.sub_total.toFixed(2)"></span></td>
+                        <td>$<span x-text="cart.sub_total"></span></td>
                     </tr>
                     <tr>
                         <th>VAT:</th>
-                        <td>$<span x-text="cart.vat.toFixed(2)"></span></td>
+                        <td>$<span x-text="cart.vat"></span></td>
                     </tr>
                     <tr>
                         <th>Total:</th>
-                        <td>$<span x-text="cart.total.toFixed(2)"></span></td>
+                        <td>$<span x-text="cart.total"></span></td>
                     </tr>
                     <tr>
                         <th>Grand Total:</th>
-                        <td>$<span x-text="cart.grand_total.toFixed(2)"></span></td>
+                        <td>$<span x-text="cart.grand_total"></span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -134,7 +134,6 @@
                 axios.get(route('cart.index'))
                     .then(function (response) {
                         self.cart = response.data.result;
-                        console.log(self.cart);
                     })
                     .catch(function (error) {
                         console.log(error);
