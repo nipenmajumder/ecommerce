@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-                <div class="col-md-3" v-if="products.data.length > 0" v-for="(product, index) in products.data"
+                <div class="col-md-3" v-if="products?.data?.length > 0" v-for="(product, index) in products.data"
                      :key="product.id">
                     <div class="card h-100">
                         <a :href="route('book-details-slug',product.slug)" class="text-decoration-none text-black">
