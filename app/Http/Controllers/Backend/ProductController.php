@@ -43,6 +43,9 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request, Product $product)
     {
         try {
+            if ($request->image !== null) {
+                $requestedData['image'] = FileService::base64FileStore($request->image, 'images/books/', random_int(1, 1000));
+            }
             $product->fill($request->validated())->save();
             return $this->respondCreated($product, 'Product created successfully');
         } catch (\Throwable $exception) {

@@ -107,7 +107,7 @@
                 </div>
                 <div class="mb-3 col-md-12">
                     <label class="form-label" for="image">Image</label>
-                    <input type="file" class="form-control" id="image" name="image">
+                    <input type="file" class="form-control" id="image" name="image" @change="onFileChange">
                     <span v-if="this.allErrors.has('image')"
                           class="error text-danger text-bold ms-2 mt-2"
                           v-text="this.allErrors.get('image')">
@@ -165,6 +165,14 @@ export default {
         }
     },
     methods: {
+        onFileChange(event) {
+            let file = event.target.files[0];
+            let reader = new FileReader();
+            reader.onload = (event) => {
+                this.product.image = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
         getAuthors() {
             axios.get(route('get-authors'))
                 .then(response => {

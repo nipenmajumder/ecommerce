@@ -31,4 +31,25 @@ class FileService
 
         return null;
     }
+
+    public static function base64FileStore($file, $directory, $filename, $oldImage = null): string
+    {
+        self::fileDelete($oldImage);
+        $image_name = $filename . '_' . Str::uuid();
+        $base64Image = explode(";base64,", $file);
+        $explodeImage = explode("image/", $base64Image[0]);
+        $extension = $explodeImage[1];
+        $image_base64 = base64_decode($base64Image[1]);
+        $image = $directory . $image_name . '.' . $extension;
+
+        $file->move($directory, $image_base64);
+//        if (App::environment('local')) {
+//            $disk = Storage::disk('public');
+//        } else {
+//            $disk = Storage::disk('digitalocean');
+//        }
+//        $disk->put($image, $image_base64);
+        return $image;
+    }
+
 }
