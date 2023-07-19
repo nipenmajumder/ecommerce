@@ -134,6 +134,7 @@ export default {
                     this.playSound();
                     this.isLoading = false;
                     this.loader();
+                    toastr.error("Something went to wrong");
                 })
         },
         getSkuProduct: _.debounce(function () {

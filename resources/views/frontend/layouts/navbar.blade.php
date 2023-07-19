@@ -2,8 +2,8 @@
     <!-- logo and search bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('frontend/image/banner/logo-v22.webp')}}"
-                                                                  alt=""></a>
+            <a class="navbar-brand" href="{{route('home')}}">
+                <img src="{{asset(cache()->get('settings.toArray')['site_logo'])}}" class="img-fluid" width="80" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">

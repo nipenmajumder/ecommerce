@@ -42,7 +42,8 @@
                         <div
                             class="col-12 col-md-6 d-flex align-items-center justify-content-end flex-column flex-md-row pe-3 gap-md-2">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>
-                                    <input type="search" class="form-control" placeholder="Search Invoice" aria-controls="DataTables_Table_0"></label>
+                                    <input type="search" class="form-control" placeholder="Search Invoice"
+                                           aria-controls="DataTables_Table_0"></label>
                             </div>
                             <div class="invoice_status mb-3 mb-md-0">
                                 <select id="UserRole" class="form-select">
@@ -93,13 +94,9 @@
                                         </button>
                                     </a>
                                     <a href="{{route('product.show',$product->id)}}">
-                                        <button @class(['btn btn-sm','btn-info' => $product->status == 0,'btn-success' => $product->status == 1,]) >
+                                        <button @class(['btn','btn-sm',
+   $product->status == 0 ? 'btn-primary' : ($product->status == 1 ? 'btn-success' : '')])>
                                             <i class='bx bx-sync mx-1'></i>
-                                        </button>
-                                    </a>
-                                    <a>
-                                        <button class="btn btn-sm btn-danger">
-                                            <i class='bx bxs-trash mx-1'></i>
                                         </button>
                                     </a>
                                 </td>

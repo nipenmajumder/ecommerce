@@ -29,7 +29,10 @@ class Product extends Model
         'description',
         'status',
     ];
-
+    const STATUS = [
+        'active' => 1,
+        'inactive' => 0,
+    ];
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
