@@ -24,8 +24,8 @@
 
                         <p>{{$book->description}}</p>
                         <h4>{{$book->sell_price}} ৳
-                            <del>460</del>
-                            ৳(30% ছাড়ে)
+{{--                            <del>460</del>--}}
+{{--                            ৳(30% ছাড়ে)--}}
                         </h4>
                         <a class="text-decoration-none" onclick="addToCart()">
                             <button type="button" class="btn btn-danger mt-2">অর্ডার করুন</button>
@@ -39,10 +39,11 @@
                                 <div class="card h-100">
                                     <img
                                         src="{{asset($publicationBook->image)}}"
-                                        class="card-img-top" alt="..."><span
-                                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%
-                                        <br>
-                                        ছাড়</span>
+                                        class="card-img-top" alt="...">
+{{--                                    <span--}}
+{{--                                        class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">30%--}}
+{{--                                        <br>--}}
+{{--                                        ছাড়</span>--}}
                                     <div class="card-body">
                                         <a href="{{route('book-details-slug',$publicationBook->slug)}}"
                                            class="text-decoration-none text-black ">
@@ -53,7 +54,7 @@
                                             <p class="card-text text-body-secondary fs-6">
                                                 লেখক: {{$publicationBook->author->name}}</p>
                                         </a>
-                                        <p class="card-text"><span class="text-decoration-line-through">460 ৳</span>
+{{--                                        <p class="card-text"><span class="text-decoration-line-through">460 ৳</span>--}}
                                             <span class="text-danger">{{$publicationBook->sell_price}} ৳</span>
                                         </p>
                                     </div>

@@ -39,9 +39,9 @@
                                 <img src="{{asset($book->image)}}" class="card-img-top"
                                      alt="{{Str::limit($book->name,15)}}">
                             </a>
-                            <span
-                                class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">
-                            30%<br>ছাড়
+{{--                            <span--}}
+{{--                                class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">--}}
+{{--                            30%<br>ছাড়--}}
                         </span>
                             <div class="card-body">
                                 <a href="{{route('book-details-slug',$book->slug)}}"
@@ -53,7 +53,7 @@
                                     <p class="card-text text-body-secondary fs-6">{{Str::limit($book->author?->name,13)}}</p>
                                 </a>
                                 <p class="card-text">
-                                    <span class="text-decoration-line-through">460 ৳</span>
+{{--                                    <span class="text-decoration-line-through">460 ৳</span>--}}
                                     <span class="text-danger">{{$book->sell_price}} ৳</span>
                                 </p>
                             </div>

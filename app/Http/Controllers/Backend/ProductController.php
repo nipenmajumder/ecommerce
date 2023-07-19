@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Author;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Publication;
 use App\Models\Stock;
@@ -54,7 +55,13 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        if ($product->status == Product::STATUS['active']) {
+            $product->status = Product::STATUS['inactive'];
+        } else {
+            $product->status = Product::STATUS['active'];
+        }
+        $product->save();
+        return redirect()->back()->with('success', 'Product status changed successfully!');
     }
 
     /**

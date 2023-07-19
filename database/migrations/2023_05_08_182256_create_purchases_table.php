@@ -18,7 +18,6 @@ return new class extends Migration
             $table->double('total_quantity');
             $table->double('subtotal');
             $table->double('total');
-            $table->string('note');
             $table->tinyInteger('status')->default(1);
             $table->foreignId('created_by')->nullable()
                 ->constrained('users', 'id')

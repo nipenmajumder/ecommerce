@@ -95,11 +95,6 @@
                                             <i class='bx bxs-detail mx-1'></i>
                                         </button>
                                     </a>
-                                    <a>
-                                        <button class="btn btn-sm btn-danger">
-                                            <i class='bx bxs-trash mx-1'></i>
-                                        </button>
-                                    </a>
                                 </td>
                             </tr>
                         @endforeach

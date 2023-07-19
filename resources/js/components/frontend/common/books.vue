@@ -44,18 +44,18 @@
 
                 </div>
                 <div class="col-md-6">
-                    <div class="row mb-3">
-                        <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">সর্ট করুন</label>
-                        <div class="col-sm-9">
-                            <div class="select-wrapper">
-                                <select class="form-select" v-model="sort">
-                                    <option selected :value="{}">Choose...</option>
-                                    <option v-for="option in sortingOptions" :value="option.value">{{ option.name }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="row mb-3">-->
+<!--                        <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">সর্ট করুন</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <div class="select-wrapper">-->
+<!--                                <select class="form-select" v-model="sort">-->
+<!--                                    <option selected :value="{}">Choose...</option>-->
+<!--                                    <option v-for="option in sortingOptions" :value="option.value">{{ option.name }}-->
+<!--                                    </option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
@@ -65,11 +65,11 @@
                         <a :href="route('book-details-slug',product.slug)" class="text-decoration-none text-black">
                             <img :src="`/${product.image}`" class="card-img-top" alt="...">
                         </a>
-                        <span
-                            class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">
-                            30%<br>
-                            ছাড়
-                        </span>
+<!--                        <span-->
+<!--                            class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">-->
+<!--                            30%<br>-->
+<!--                            ছাড়-->
+<!--                        </span>-->
                         <div class="card-body">
                             <a :href="route('book-details-slug',product.slug)" class="text-decoration-none text-black">
                                 <h5 class="card-title fs-6">{{ product.name }}</h5>
