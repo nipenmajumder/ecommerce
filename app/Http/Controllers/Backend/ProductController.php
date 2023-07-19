@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Publication;
 use App\Models\Stock;
+use App\Services\FileService;
 
 class ProductController extends Controller
 {
@@ -43,10 +44,11 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request, Product $product)
     {
         try {
+            $requestedData = $request->validated();
             if ($request->image !== null) {
-                $requestedData['image'] = FileService::base64FileStore($request->image, 'images/books/', random_int(1, 1000));
+                $requestedData['image'] = FileService::base64FileStore($request->image, 'images/product/', random_int(1, 1000));
             }
-            $product->fill($request->validated())->save();
+            $product->fill($requestedData)->save();
             return $this->respondCreated($product, 'Product created successfully');
         } catch (\Throwable $exception) {
             return $this->respondError($exception->getMessage(), $exception->getCode());
@@ -72,7 +74,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('backend.product.edit', compact('product'));
+        abort(403, 'product edit is not available');
+//        return view('backend.product.edit', compact('product'));
     }
 
     /**
