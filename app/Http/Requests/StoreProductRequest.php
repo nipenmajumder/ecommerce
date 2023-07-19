@@ -27,6 +27,7 @@ class StoreProductRequest extends FormRequest
             'slug' => 'required|string|max:255|unique:products|lowercase:products',
             'sku' => 'required|string|max:255|unique:products',
             'barcode' => 'required|string|max:255|unique:products',
+            'category_id' => 'required|integer',
             'author_id' => 'required|integer|exists:authors,id',
             'publication_id' => 'nullable|integer|exists:publications,id',
             'buy_price' => 'required|numeric|gt:0',
