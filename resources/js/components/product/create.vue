@@ -42,6 +42,22 @@
                     </span>
                 </div>
                 <div class="mb-3 col-md-4">
+                    <label class="form-label" for="category_id">Category<span class="text-danger">*</span></label>
+                    <v-select :options="categories"
+                              :label="'name'"
+                              :value="'id'"
+                              name="category_id"
+                              :placeholder="'Select Category'"
+                              :reduce="category => category.id"
+                              v-model="product.category_id"
+                    >
+                    </v-select>
+                    <span v-if="this.allErrors.has('category_id')"
+                          class="error text-danger text-bold ms-2 mt-2"
+                          v-text="this.allErrors.get('category_id')">
+                    </span>
+                </div>
+                <div class="mb-3 col-md-4">
                     <label class="form-label" for="author">Author<span class="text-danger">*</span></label>
                     <v-select :options="authors"
                               :label="'name'"
@@ -139,6 +155,7 @@ export default {
         return {
             allErrors: new Errors(),
             authors: [],
+            categories: [],
             publications: [],
             statuses: [
                 {name: 'Active', value: 1},
@@ -150,6 +167,7 @@ export default {
                 sku: '',
                 barcode: '',
                 author_id: '',
+                category_id: '',
                 publication_id: '',
                 buy_price: 0,
                 sell_price: 0,
@@ -169,6 +187,16 @@ export default {
             axios.get(route('get-authors'))
                 .then(response => {
                     this.authors = response.data.result;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+        getCategories() {
+            axios.get(route('get-categories-data'))
+                .then(response => {
+                  console.log(response.data.result.data)
+                    this.categories = response.data.result.data;
                 })
                 .catch(error => {
                     console.log(error);
@@ -222,6 +250,7 @@ export default {
         this.getAuthors();
         this.getPublications();
         this.getSkuBarcode();
+        this.getCategories();
     }
 }
 </script>
