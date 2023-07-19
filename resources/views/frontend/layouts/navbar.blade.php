@@ -20,10 +20,10 @@
                             <a class="nav-link" href="{{route('login')}}">লগইন/রেজিস্টার</a>
                         @endguest
                         @role('admin')
-                            <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                        <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
                         @endrole
                         @role('customer')
-                         <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{{route('customer-dashboard.home')}}">Dashboard</a>
                         @endrole
                     </li>
                 </ul>

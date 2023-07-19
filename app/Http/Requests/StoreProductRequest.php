@@ -32,7 +32,7 @@ class StoreProductRequest extends FormRequest
             'publication_id' => 'nullable|integer|exists:publications,id',
             'buy_price' => 'required|numeric|gt:0',
             'sell_price' => 'required|numeric|gt:0|gte:buy_price',
-            'image' => 'nullable|image|max:1024|mimes:jpg,jpeg,png',
+            'image' => 'nullable',
             'description' => 'nullable|string',
             'status' => 'required|integer|in:0,1',
         ];
