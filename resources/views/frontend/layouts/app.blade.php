@@ -44,7 +44,7 @@
         }
     </style>
 </head>
-<body x-data="cart">
+<body x-data="Object.assign({}, cart(), searchData())">
 <div class="cart-icon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-price">$150</span>
@@ -152,6 +152,28 @@
             }
         }
     }
+    function searchData() {
+        return {
+            search: '',
+            data: [],
+            performSearch() {
+                if (!this.search.trim()) {
+                    this.data = [];
+                    return;
+                }
+                axios.post(route('search'), {
+                    search: this.search
+                })
+                    .then((response) => {
+                        console.log(response);
+                        this.data = response.data.result;
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            },
+        }
+    }
 </script>
 <script>
     var offcanvasRight = document.getElementById('offcanvasRight');
@@ -162,6 +184,30 @@
     offcanvasRight.addEventListener('hide.bs.offcanvas', function () {
         cartIcon.classList.remove('hidden');
     });
+</script>
+<script>
+    function searchData() {
+        return {
+            search: '',
+            data: [],
+            performSearch() {
+                if (!this.search.trim()) {
+                    this.data = [];
+                    return;
+                }
+                axios.post(route('search'), {
+                    search: this.search
+                })
+                    .then((response) => {
+                        console.log(response);
+                        this.data = response.data.result;
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            },
+        }
+    }
 </script>
 </body>
 </html>
