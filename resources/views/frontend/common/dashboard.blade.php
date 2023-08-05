@@ -14,6 +14,14 @@
                                 Profile
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('orders.index')}}" class="nav-link" aria-current="page">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#home"></use>
+                                </svg>
+                                Orders
+                            </a>
+                        </li>
                         <li>
                             <a href="{{route('customer-dashboard.logout')}}" class="nav-link text-white">
                                 <svg class="bi me-2" width="16" height="16">
@@ -70,5 +78,4 @@
             </div>
         </div>
     </div>
-
 @endsection

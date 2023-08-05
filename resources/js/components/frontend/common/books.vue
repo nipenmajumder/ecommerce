@@ -102,7 +102,8 @@
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-    name: "books",
+    name: "Filter Products",
+    props: ['selected'],
     data() {
         return {
             categories: [],

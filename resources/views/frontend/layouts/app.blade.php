@@ -47,7 +47,7 @@
 <body x-data="Object.assign({}, cart(), searchData())">
 <div class="cart-icon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
     <i class="fas fa-shopping-cart"></i>
-    <span class="cart-price">$150</span>
+    <span x-text="cart.grand_total"></span>
 </div>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"

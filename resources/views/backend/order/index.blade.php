@@ -29,13 +29,6 @@
                             <div
                                 class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start mt-md-0 mt-3">
                                 <div class="dt-buttons btn-group flex-wrap">
-{{--                                    <a href="{{route('publication.create')}}">--}}
-{{--                                        <button class="btn btn-secondary btn-primary" tabindex="0"--}}
-{{--                                                aria-controls="DataTables_Table_0" type="button"><span><i--}}
-{{--                                                    class="bx bx-plus me-md-1"></i><span--}}
-{{--                                                    class="d-md-inline-block d-none">Create Publication</span></span>--}}
-{{--                                        </button>--}}
-{{--                                    </a>--}}
                                 </div>
                             </div>
                         </div>
@@ -93,7 +86,7 @@
                                     @elseif($order->status == 2)
                                         <span class="badge bg-warning">Processing</span>
                                     @elseif($order->status == 3)
-                                        <span class="badge bg-success">Completed+</span>
+                                        <span class="badge bg-success">Delivered</span>
                                     @endif
                                 </td>
                                 <td>
