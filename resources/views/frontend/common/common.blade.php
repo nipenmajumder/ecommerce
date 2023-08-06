@@ -26,20 +26,20 @@
                     <div class="list-group list-group-flush">
                         @switch(request()->route()->getName())
                             @case('subjects')
-                                <a
-                                    class="list-group-item list-group-item-action border-start border-warning border-3 border-bottom-0 border-top-0 border-end-0 mb-2 fw-bold">
+                                <a href="{{route('subject.book', $value->slug)}}"
+                                   class="list-group-item list-group-item-action border-start border-warning border-3 border-bottom-0 border-top-0 border-end-0 mb-2 fw-bold">
                                     {{ $value->name }}
                                 </a>
                                 @break
                             @case('publications')
-                                <a
-                                    class="list-group-item list-group-item-action border-start border-warning border-3 border-bottom-0 border-top-0 border-end-0 mb-2 fw-bold">
+                                <a href="{{route('publication.book', $value->slug)}}"
+                                   class="list-group-item list-group-item-action border-start border-warning border-3 border-bottom-0 border-top-0 border-end-0 mb-2 fw-bold">
                                     {{ $value->name }}
                                 </a>
                                 @break
                             @case('authors')
-                                <a
-                                    class="list-group-item list-group-item-action border-start border-warning border-3 border-bottom-0 border-top-0 border-end-0 mb-2 fw-bold">
+                                <a href="{{route('author.book', $value->slug)}}"
+                                   class="list-group-item list-group-item-action border-start border-warning border-3 border-bottom-0 border-top-0 border-end-0 mb-2 fw-bold">
                                     {{ $value->name }}
                                 </a>
                                 @break
