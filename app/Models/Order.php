@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,13 +10,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory,CreatedUpdatedBy;
 
     protected $fillable = [
         'date',
         'invoice',
         'user_id',
         'total_quantity',
+        'total_vat',
         'subtotal',
         'total',
         'note',
@@ -43,5 +45,16 @@ class Order extends Model
     public function seller(): BelongsTo
     {
         return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
+
+
+    public static function generateInvoiceCode(): string
+    {
+        $lastInvoice = self::query()
+            ->where('invoice', 'LIKE', 'INV' . '%')
+            ->whereDate('date', today())
+            ->latest()->count() ?? 0;
+        return 'INV' . '-' . date('dmy') .
+            (str_pad((int)$lastInvoice + 1, 3, '0', STR_PAD_LEFT));
     }
 }

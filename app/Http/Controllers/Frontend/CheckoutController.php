@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,16 +35,17 @@ class CheckoutController extends Controller
     {
         try {
             DB::beginTransaction();
-            auth()->user()->update([
+            User::where('id', auth()->id())->update([
                 'name' => $request->name,
                 'phone' => $request->phone,
-                'address' => $request->address
+                'address' => $request->address,
             ]);
             $order = new Order();
             $order->date = date('Y-m-d');
-            $order->invoice = 'INV-' . date('Ymd') . time();
+            $order->invoice = Order::generateInvoiceCode();
             $order->user_id = auth()->id();
             $order->total_quantity = session()->get('cart')['count'];
+            $order->total_vat = session()->get('cart')['vat'];
             $order->subtotal = session()->get('cart')['sub_total'];
             $order->total = session()->get('cart')['grand_total'];
             $order->note = $request->note;

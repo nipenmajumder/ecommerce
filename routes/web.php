@@ -45,11 +45,11 @@ Route::prefix('')->middleware(['auth', 'role:customer'])->group(function () {
     Route::get('/dashboard', [CustomerDashboardController::class, 'dashboard'])->name('customer-dashboard.home');
     Route::resource('checkout', CheckoutController::class);
     Route::get('user-logout', [CustomerDashboardController::class, 'logout'])->name('customer-dashboard.logout');
-
+    Route::resource('orders',\App\Http\Controllers\Frontend\OrderController::class);
 });
 
 
-Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', ])->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
     Route::resource('slider', SliderController::class);
     Route::resource('category', CategoryController::class);

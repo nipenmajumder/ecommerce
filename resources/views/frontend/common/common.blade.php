@@ -20,8 +20,6 @@
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
             </div>
         </form>
-
-
         <div class="row">
             @foreach($data as $value)
                 <div class="col-lg-4">
