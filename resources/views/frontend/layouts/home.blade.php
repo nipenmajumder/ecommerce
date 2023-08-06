@@ -42,7 +42,7 @@
 {{--                            <span--}}
 {{--                                class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">--}}
 {{--                            30%<br>ছাড়--}}
-                        </span>
+{{--                        </span>--}}
                             <div class="card-body">
                                 <a href="{{route('book-details-slug',$book->slug)}}"
                                    class="text-decoration-none text-black font-bold">

@@ -13,9 +13,11 @@ class CategoryBooksController extends Controller
      */
     public function __invoke(Request $request)
     {
-//        $data = Category::query()
-//            ->where('slug', request()->route()->parameters()['slug'])
-//            ->first(['id', 'name']);
-//        return view('frontend.common.books',compact('data'));
+        $data = Category::query()
+            ->where('slug', request()->route()->parameters()['slug'])
+            ->with('books')
+            ->first(['id', 'name']);
+        $booksPaginator = $data->books()->paginate(12);
+        return view('frontend.common.book', compact( 'booksPaginator'));
     }
 }

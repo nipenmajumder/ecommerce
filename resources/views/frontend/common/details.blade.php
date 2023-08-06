@@ -23,6 +23,7 @@
                         </a>
 
                         <p>{{$book->description}}</p>
+                        <p>Stock : {{$book->total_stock}}</p>
                         <h4>{{$book->sell_price}} ৳
 {{--                            <del>460</del>--}}
 {{--                            ৳(30% ছাড়ে)--}}
@@ -102,10 +103,11 @@
 @push('js')
     <script>
         function addToCart() {
-            {{--if ({{$book->total_stock=== 0}}) {--}}
-            {{--    alert('দুঃখিত, পণ্যটি স্টকে নেই');--}}
-            {{--    return;--}}
-            {{--}--}}
+            var book = {!! json_encode($book) !!};
+            if (book.total_stock === 0) {
+                toastr.error(`দুঃখিত, ${book.name} স্টকে নেই`);
+                return;
+            }
             loader(true);
             axios.post('{{route('cart.store')}}', {
                 product: {!! json_encode(Arr::except($book, ['author', 'publication', 'category'])) !!}
@@ -114,6 +116,7 @@
                     loader(false);
                     toastr.success(response.data.message);
                     document.dispatchEvent(new CustomEvent('added-to-cart'));
+                    location.reload();
                 })
                 .catch(error => {
                     toastr.error(error.response.data.message);
