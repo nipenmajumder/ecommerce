@@ -31,7 +31,8 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Create Database
       run: |
-        mysql -u root -proot -e "CREATE DATABASE ecommerce;"
+        sudo /etc/init.d/mysql start
+        mysql -e "CREATE DATABASE IF NOT EXISTS ecommerce" -u root -p root
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
           DB_CONNECTION: mysql
