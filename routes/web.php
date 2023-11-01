@@ -41,7 +41,7 @@ Route::post('search', SearchController::class)->name('search');
 Route::resource('cart', CartController::class)->middleware(['web'])->only(['index', 'store', 'update', 'destroy']);
 
 
-Route::prefix('')->middleware(['auth', 'role:customer'])->group(function () {
+Route::middleware(['auth', 'role:customer'])->group(function () {
     Route::get('/dashboard', [CustomerDashboardController::class, 'dashboard'])->name('customer-dashboard.home');
     Route::resource('checkout', CheckoutController::class);
     Route::get('user-logout', [CustomerDashboardController::class, 'logout'])->name('customer-dashboard.logout');
