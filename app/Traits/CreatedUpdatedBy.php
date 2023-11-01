@@ -2,24 +2,24 @@
 
 namespace App\Traits;
 
-use App\Model\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 trait CreatedUpdatedBy
 {
     public function createdBy()
     {
-        return $this->belongsTo(User::class, 'id', 'created_by');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     public function createdUser()
     {
-        return $this->hasOne(User::class, 'id', 'created_by');
+        return $this->hasOne(User::class, 'created_by', 'id');
     }
 
     public function updatedUser()
     {
-        return $this->hasOne(User::class, 'id', 'created_by');
+        return $this->hasOne(User::class, 'created_by', 'created_by');
     }
 
     public function updatedBy()
