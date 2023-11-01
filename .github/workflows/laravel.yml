@@ -30,8 +30,12 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Create Database
-      run: |
-        mysql -u root -proot -e "CREATE DATABASE ecommerce;"
+      run:
+#        mysql -u root -proot --socket=/var/run/mysqld/mysqld.sock -e "CREATE DATABASE IF NOT EXISTS ecommerce;"
+        sudo mysql;
+        "CREATE DATABASE IF NOT EXISTS ecommerce;";
+        "exit";
+
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
           DB_CONNECTION: mysql
