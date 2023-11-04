@@ -31,10 +31,7 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Create Database
       run:
-#        mysql -u root -proot --socket=/var/run/mysqld/mysqld.sock -e "CREATE DATABASE IF NOT EXISTS ecommerce;"
-        sudo mysql;
-        "CREATE DATABASE IF NOT EXISTS ecommerce;";
-        "exit";
+        mysql --u=root --p=root--socket=/var/run/mysqld/mysqld.sock -e "CREATE DATABASE IF NOT EXISTS ecommerce;"
 
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:

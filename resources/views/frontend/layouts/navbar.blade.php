@@ -2,7 +2,10 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
             <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset(cache()->get('settings.toArray')['site_logo'])}}" class="img-fluid" width="80" alt="">
+                @if(cache()->get('settings.toArray'))
+                    <img src="{{asset(cache()->get('settings.toArray')['site_logo'])}}" class="img-fluid" width="80"
+                         alt="">
+                @endif
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -27,12 +30,16 @@
                                                 </div>
                                                 <div class="col-md-9 d-flex align-items-center">
                                                     <div class="search-result-content">
-                                                        <h6 class=" mb-1 text-black" x-text="'Name : ' + item.name"></h6>
-                                                        <small class="text-black" x-text="'Author : ' + item.author.name"></small>
+                                                        <h6 class=" mb-1 text-black"
+                                                            x-text="'Name : ' + item.name"></h6>
+                                                        <small class="text-black"
+                                                               x-text="'Author : ' + item.author.name"></small>
                                                         <br>
-                                                        <small class="text-black" x-text="'Publication : ' + item.publication.name"></small>
+                                                        <small class="text-black"
+                                                               x-text="'Publication : ' + item.publication.name"></small>
                                                         <br>
-                                                        <small class="text-black" x-text="'Price: $ ' +item.sell_price"></small>
+                                                        <small class="text-black"
+                                                               x-text="'Price: $ ' +item.sell_price"></small>
                                                     </div>
                                                 </div>
                                             </div>

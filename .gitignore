@@ -9,6 +9,7 @@
 /public/images/slider
 /storage/*.key
 /vendor
+/mysql
 .env
 .env.backup
 .env.production
