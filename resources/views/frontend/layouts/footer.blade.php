@@ -2,8 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 p-2 text-light">
-                <img src="{{asset(asset(cache()->get('settings.toArray')['site_logo']))}}" class="img-fluid" width="90" alt="">
-                <p>Wafilife is a leading book shop in Bangladesh. We offer thousands of islamic, general and
+                @if(cache()->get('settings.toArray'))
+                    <img src="{{asset(asset(cache()->get('settings.toArray')['site_logo']))}}" class="img-fluid" width="90" alt="">
+                @endif
+                <p>Book Heaven is a leading book shop in Bangladesh. We offer thousands of islamic, general and
                     academic books at a discounted price. We provide good packaging with low shipping cost all over
                     the Bangladesh.</p>
                 <h4>অ্যাপ ডাউনলোড করুন</h4>
