@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Author;
 use App\Models\Publication;
 use Illuminate\Http\Request;
 
@@ -19,6 +18,7 @@ class PublicationBooksController extends Controller
             ->with('books')
             ->first(['id', 'name']);
         $booksPaginator = $data->books()->paginate(12);
-        return view('frontend.common.book', compact( 'booksPaginator'));
+
+        return view('frontend.common.book', compact('booksPaginator'));
     }
 }

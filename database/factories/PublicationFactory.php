@@ -18,6 +18,7 @@ class PublicationFactory extends Factory
     public function definition(): array
     {
         $name = fake()->name();
+
         return [
             'name' => $name,
             'slug' => Str::slug($name),

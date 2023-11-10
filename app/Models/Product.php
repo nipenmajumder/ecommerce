@@ -11,10 +11,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, CreatedUpdatedBy, SoftDeletes;
+    use CreatedUpdatedBy, HasFactory, SoftDeletes;
 
     protected $table = 'products';
+
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'slug',
@@ -29,10 +31,12 @@ class Product extends Model
         'description',
         'status',
     ];
+
     const STATUS = [
         'active' => 1,
         'inactive' => 0,
     ];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -56,7 +60,7 @@ class Product extends Model
     public function scopeSearch($query, $keyword)
     {
         return $query->where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', '%' . $keyword . '%');
+            $query->where('name', 'LIKE', '%'.$keyword.'%');
         });
     }
 }

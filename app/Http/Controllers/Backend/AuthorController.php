@@ -18,6 +18,7 @@ class AuthorController extends Controller
     public function index()
     {
         $authors = Author::query()->paginate(10);
+
         return view('backend.author.index', compact('authors'));
     }
 
@@ -47,9 +48,11 @@ class AuthorController extends Controller
             }
             $author->fill($requestData)->save();
             DB::commit();
+
             return redirect()->route('author.index')->with('success', 'Author created successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -65,6 +68,7 @@ class AuthorController extends Controller
             $author->status = Author::STATUS['active'];
         }
         $author->save();
+
         return redirect()->back()->with('success', 'Author status changed successfully!');
     }
 
@@ -94,9 +98,11 @@ class AuthorController extends Controller
             }
             $author->fill($requestData)->save();
             DB::commit();
+
             return redirect()->route('author.index')->with('success', 'Author updated successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

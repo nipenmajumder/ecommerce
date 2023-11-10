@@ -14,6 +14,7 @@ class PublicationController extends Controller
     public function __invoke(Request $request)
     {
         $publications = Publication::query()->get(['id', 'name']);
+
         return $this->respondSuccess($publications, 'Publications fetched successfully');
     }
 }

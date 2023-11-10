@@ -6,17 +6,17 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-
 class ProductService
 {
     public static function barCodeWiseProduct($barcode): array
     {
         $product = Product::query()->where('barcode', $barcode)->first();
-        if (!isset($product)) {
+        if (! isset($product)) {
             $validator = Validator::make([], []);
             $validator->errors()->add('barcode', 'Product not found');
             throw new ValidationException($validator);
         }
+
         return [self::productVariantBarcode($product)];
     }
 

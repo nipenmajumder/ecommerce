@@ -14,6 +14,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::query()->where('user_id', auth()->id())->latest()->paginate(10);
+
         return view('frontend.common.orders', compact('orders'));
     }
 
@@ -39,6 +40,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $order->loadCount('orderDetails')->load(['orderDetails.product']);
+
         return view('frontend.common.order-details', compact('order'));
     }
 

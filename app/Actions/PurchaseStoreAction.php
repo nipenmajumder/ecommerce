@@ -43,7 +43,7 @@ class PurchaseStoreAction
                     'date' => date('Y-m-d', strtotime($request->date)),
                     'user_id' => auth()->id(),
                     'purchase_id' => $purchase->id,
-//                    'purchase_details_id' => $purchaseDetail->id,
+                    //                    'purchase_details_id' => $purchaseDetail->id,
                     'product_id' => $value['product_id'],
                     'product_sku' => $value['variation_sku'],
                     'product_barcode' => $value['product_barcode'],
@@ -51,12 +51,13 @@ class PurchaseStoreAction
                     'sell_price' => $value['product_sell_price'],
                     'stock_status' => Stock::STATUS['Stock'],
                     'created_by' => auth()->id(),
-                    "created_at" => date('Y-m-d H:i:s'),
-                    "updated_at" => date('Y-m-d H:i:s'),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ];
             }
             Stock::insert($stock_data);
         }
+
         return $purchase;
     }
 }

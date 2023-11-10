@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePublicationRequest;
 use App\Http\Requests\UpdatePublicationRequest;
-use App\Models\Category;
 use App\Models\Publication;
 use App\Services\FileService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class PublicationController extends Controller
 {
@@ -20,7 +18,8 @@ class PublicationController extends Controller
     public function index()
     {
         $publications = Publication::query()->paginate(10);
-        return view('backend.publication.index',compact('publications'));
+
+        return view('backend.publication.index', compact('publications'));
     }
 
     /**
@@ -34,7 +33,7 @@ class PublicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePublicationRequest $request,Publication $publication)
+    public function store(StorePublicationRequest $request, Publication $publication)
     {
         try {
             DB::beginTransaction();
@@ -49,9 +48,11 @@ class PublicationController extends Controller
             }
             $publication->fill($requestData)->save();
             DB::commit();
+
             return redirect()->route('publication.index')->with('success', 'Publication created successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -67,6 +68,7 @@ class PublicationController extends Controller
             $publication->status = Publication::STATUS['active'];
         }
         $publication->save();
+
         return redirect()->back()->with('success', 'Publication status changed successfully!');
     }
 
@@ -75,7 +77,7 @@ class PublicationController extends Controller
      */
     public function edit(Publication $publication)
     {
-        return view('backend.publication.edit',compact('publication'));
+        return view('backend.publication.edit', compact('publication'));
     }
 
     /**
@@ -96,9 +98,11 @@ class PublicationController extends Controller
             }
             $publication->fill($requestData)->save();
             DB::commit();
+
             return redirect()->route('publication.index')->with('success', 'Publication created successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

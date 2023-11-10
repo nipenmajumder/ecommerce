@@ -15,6 +15,7 @@ class AuthorController extends Controller
     public function __invoke(Request $request)
     {
         $authors = Author::query()->active()->withCount('books')->get();
+
         return $this->respondWithResourceCollection(AuthorResource::collection($authors), 'Authors fetched successfully');
     }
 }

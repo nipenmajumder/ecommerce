@@ -8,7 +8,6 @@ use App\Models\Publication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
@@ -25,6 +24,7 @@ class ProductFactory extends Factory
         $authors = Author::query()->get();
         $publication = Publication::query()->get();
         $name = fake()->text();
+
         return [
             'name' => $name,
             'slug' => Str::slug($name),
@@ -32,12 +32,12 @@ class ProductFactory extends Factory
             'barcode' => fake()->unique()->numerify('##########'),
             'image' => str_replace('public/', '', fake()->image('public/images/product', 640, 480, null, true)),
             'description' => fake()->text(),
-            'category_id'=>$categories->random()->id,
+            'category_id' => $categories->random()->id,
             'author_id' => $authors->random()->id,
             'publication_id' => $publication->random()->id,
             'buy_price' => fake()->numberBetween(100, 1000),
             'sell_price' => fake()->numberBetween(1000, 10000),
-            'status' => fake()->numberBetween(1, 2)
+            'status' => fake()->numberBetween(1, 2),
         ];
     }
 }

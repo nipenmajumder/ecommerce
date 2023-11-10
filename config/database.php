@@ -63,6 +63,20 @@ return [
             ]) : [],
         ],
 
+        'db_two' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_TWO'),
+            'database' => env('DB_DATABASE_TWO'),
+            'username' => env('DB_USERNAME_TWO'),
+            'password' => env('DB_PASSWORD_TWO'),
+            'port' => env('DB_PORT_TWO'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

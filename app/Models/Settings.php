@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 class Settings extends Model
 {
     use HasFactory;
+
     protected $fillable = ['id', 'key', 'value'];
 
     /**
@@ -23,11 +24,8 @@ class Settings extends Model
         });
     }
 
-
     /**
      * Get all the settings in array
-     *
-     * @return array
      */
     public static function getSettingsArray(): array
     {
@@ -38,37 +36,28 @@ class Settings extends Model
 
     /**
      * Check if setting exists
-     *
-     * @param string $key
-     * @return bool
      */
     public static function has(string $key): bool
     {
-        return (bool)self::getAllSettings()->whereStrict('key', $key)->count();
+        return (bool) self::getAllSettings()->whereStrict('key', $key)->count();
     }
 
     /**
      * Get a settings value
-     *
-     * @param string $key
-     * @param string|null $default
-     * @return string|null
      */
-    public static function get(string $key, ?string $default = null): ?string
+    public static function get(string $key, string $default = null): ?string
     {
         if (self::has($key)) {
             $setting = self::getAllSettings()->where('key', $key)->first();
+
             return $setting->value;
         }
+
         return $default;
     }
 
     /**
      * Add a settings value
-     *
-     * @param string $key
-     * @param string $value
-     * @return string|bool
      */
     public static function add(string $key, string $value): bool|string
     {
@@ -78,29 +67,24 @@ class Settings extends Model
 
         return self::create(['key' => $key, 'value' => $value]) ?? $value;
     }
+
     /**
      * Set a value for setting
-     *
-     * @param $key
-     * @param $value
-     * @return string|bool
      */
     public static function set($key, $value): bool|string
     {
         if ($setting = self::where('key', $key)->first()) {
             return $setting->update([
                 'key' => $key,
-                'value' => $value
+                'value' => $value,
             ]);
         }
+
         return self::add($key, $value);
     }
 
     /**
      * Update Settings
-     *
-     * @param array $data
-     * @return void
      */
     public static function updateSettings(array $data): void
     {
@@ -120,8 +104,6 @@ class Settings extends Model
 
     /**
      * The "booting" method of the model.
-     *
-     * @return void
      */
     protected static function boot(): void
     {
@@ -139,5 +121,4 @@ class Settings extends Model
             self::flushCache();
         });
     }
-
 }

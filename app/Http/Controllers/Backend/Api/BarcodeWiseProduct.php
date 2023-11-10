@@ -17,11 +17,12 @@ class BarcodeWiseProduct extends Controller
     {
         $product_sku = $request->get('barcode');
         $product = ProductService::barCodeWiseProduct($product_sku);
-        if (!isset($product)) {
+        if (! isset($product)) {
             $validator = Validator::make([], []);
             $validator->errors()->add('barcode', 'Product not found');
             throw new ValidationException($validator);
         }
+
         return $this->respondSuccess($product, 'Barcode product fetch successfully');
     }
 }

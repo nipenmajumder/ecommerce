@@ -26,7 +26,7 @@ class UpdateAuthorRequest extends FormRequest
             'name' => 'required|string|max:255',
             'slug' => ['sometimes', 'required', 'string', 'max:255',
                 Rule::unique('authors')->ignore($this->route('author')),
-                'lowercase'
+                'lowercase',
             ],
             'avatar' => 'nullable|image|max:1024',
             'email' => ['sometimes', 'required', 'email', 'max:255',
@@ -36,6 +36,7 @@ class UpdateAuthorRequest extends FormRequest
             'death_day' => 'nullable|date_format:Y-m-d|after_or_equal:date_of_birth',
         ];
     }
+
     public function messages(): array
     {
         return [

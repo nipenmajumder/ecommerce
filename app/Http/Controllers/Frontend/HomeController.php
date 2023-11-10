@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Product;
+use App\Models\Settings;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -21,7 +21,7 @@ class HomeController extends Controller
             ->withWhereHas('books')
             ->with([
                 'books:id,name,slug,sku,barcode,sell_price,category_id,author_id,image',
-                'books.author:id,name,slug'
+                'books.author:id,name,slug',
             ])
             ->get([
                 'id',
@@ -29,6 +29,8 @@ class HomeController extends Controller
                 'slug',
                 'image',
             ]);
+        $settings = Settings::getAllSettings();
+
         return view('frontend.layouts.home', compact('sliders', 'categories'));
     }
 }

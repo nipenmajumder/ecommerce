@@ -6,7 +6,6 @@ use App\Actions\PurchaseStoreAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
-use App\Model\User;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +19,7 @@ class PurchaseController extends Controller
         $purchases = Purchase::query()
             ->withCount('purchaseDetails as total_items')
             ->paginate(10);
+
         return view('backend.purchase.index', compact('purchases'));
     }
 
@@ -30,10 +30,11 @@ class PurchaseController extends Controller
     {
         $purchaseCount = Purchase::query()->whereDate('date', date('Y-m-d'))->count();
         $purchaseCount = $purchaseCount ?? 0;
-        $invoice = 'P' . '-' . auth()->user()->id . '-' . date('dmy') .
+        $invoice = 'P'.'-'.auth()->user()->id.'-'.date('dmy').
             (str_pad($purchaseCount + 1, 3, '0', STR_PAD_LEFT));
         $user = auth()->user();
         $date = date('Y-m-d');
+
         return view('backend.purchase.create', compact('invoice', 'user', 'date'));
     }
 
@@ -46,9 +47,11 @@ class PurchaseController extends Controller
             DB::beginTransaction();
             $saved = $action->handle($request, $purchase);
             DB::commit();
+
             return $this->respondCreated($saved, 'Product purchased successfully');
         } catch (\Throwable $e) {
             DB::rollBack();
+
             return $this->respondError($e->getMessage());
         }
     }
@@ -62,10 +65,11 @@ class PurchaseController extends Controller
             ->loadCount('purchaseDetails')
             ->load(
                 [
-                    'purchaseDetails.product:id,name,buy_price,sell_price,sku,barcode', 'user'
+                    'purchaseDetails.product:id,name,buy_price,sell_price,sku,barcode', 'user',
                 ]
             );
-//        dd($purchase->toArray());
+
+        //        dd($purchase->toArray());
         return view('backend.purchase.view', compact('purchase'));
 
     }

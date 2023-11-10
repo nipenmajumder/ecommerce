@@ -8,22 +8,23 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PurchaseDetails extends Model
 {
-        use CreatedUpdatedBy;
+    use CreatedUpdatedBy;
 
-        protected $table = 'purchase_details';
-        protected $primaryKey = 'id';
+    protected $table = 'purchase_details';
 
-        protected $fillable = [
-            'date',
-            'invoice',
-            'user_id',
-            'purchase_id',
-            'product_id',
-            'purchase_price',
-            'sell_price',
-            'quantity',
-            'total',
-        ];
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'date',
+        'invoice',
+        'user_id',
+        'purchase_id',
+        'product_id',
+        'purchase_price',
+        'sell_price',
+        'quantity',
+        'total',
+    ];
 
     public function product(): HasOne
     {

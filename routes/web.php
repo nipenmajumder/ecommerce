@@ -25,7 +25,6 @@ use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', HomeController::class)->name('home');
 Route::get('subjects', \App\Http\Controllers\Frontend\CategoryController::class)->name('subjects');
 Route::get('publications', \App\Http\Controllers\Frontend\PublicationController::class)->name('publications');
@@ -37,19 +36,16 @@ Route::get('publication/{slug}', PublicationBooksController::class)->name('publi
 Route::get('book-details/{slug}', BookDetailsController::class)->name('book-details-slug');
 Route::post('search', SearchController::class)->name('search');
 
-
 Route::resource('cart', CartController::class)->middleware(['web'])->only(['index', 'store', 'update', 'destroy']);
-
 
 Route::middleware(['auth', 'role:customer'])->group(function () {
     Route::get('/dashboard', [CustomerDashboardController::class, 'dashboard'])->name('customer-dashboard.home');
     Route::resource('checkout', CheckoutController::class);
     Route::get('user-logout', [CustomerDashboardController::class, 'logout'])->name('customer-dashboard.logout');
-    Route::resource('orders',\App\Http\Controllers\Frontend\OrderController::class);
+    Route::resource('orders', \App\Http\Controllers\Frontend\OrderController::class);
 });
 
-
-Route::prefix('admin')->middleware(['auth', ])->group(function () {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
     Route::resource('slider', SliderController::class);
     Route::resource('category', CategoryController::class);
@@ -61,7 +57,6 @@ Route::prefix('admin')->middleware(['auth', ])->group(function () {
     Route::resource('role', RoleController::class);
     Route::resource('settings', SettingsController::class)->only(['index', 'store']);
 
-
     Route::post('barcode-wise-product', BarcodeWiseProduct::class)->name('barcode-wise-product');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -72,4 +67,4 @@ Route::prefix('admin')->middleware(['auth', ])->group(function () {
     Route::get('get-sku-barcode', GenerateSkuBarcode::class)->name('get-sku-barcode');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

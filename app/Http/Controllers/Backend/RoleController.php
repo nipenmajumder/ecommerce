@@ -14,7 +14,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::paginate(100);
-        return view('backend.roles.index',compact('roles'));
+
+        return view('backend.roles.index', compact('roles'));
     }
 
     /**
@@ -31,6 +32,7 @@ class RoleController extends Controller
     public function store(Request $request, Role $role)
     {
         $role->create(['name' => $request->name]);
+
         return redirect()->route('roles.index')->with('success', 'Role Created Successfully');
     }
 

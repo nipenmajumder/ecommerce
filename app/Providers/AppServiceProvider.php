@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -23,12 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-//        Model::preventLazyLoading(! app()->isProduction());
-//        Model::shouldBeStrict(! app()->isProduction());
-//        Model::preventSilentlyDiscardingAttributes(! app()->isProduction());
-//        if($this->app->environment(['production','staging'])) {
-//            URL::forceScheme('https');
-//        }
+        Model::preventLazyLoading(! app()->isProduction());
+        Model::shouldBeStrict(! app()->isProduction());
+        Model::preventSilentlyDiscardingAttributes(! app()->isProduction());
+        if ($this->app->environment(['production', 'staging'])) {
+            URL::forceScheme('https');
+        }
         $cart = [
             'items' => [],
             'total' => 0.00,
