@@ -10,16 +10,13 @@ class PurchaseStoreAction
 {
     public function handle($request, Purchase $purchase): Purchase
     {
-
         $data = [
             'date' => date('Y-m-d', strtotime($request->date)),
             'invoice' => $request->invoice,
             'subtotal' => $request->totalPurchase,
             'total' => $request->totalPurchase,
             'total_quantity' => $request->total_quantity,
-            'product_profit' => $request->profit,
             'status' => Purchase::STATUS['approved'],
-            'note' => $request->note,
         ];
         $purchase->fill($data)->save();
 
@@ -43,7 +40,6 @@ class PurchaseStoreAction
                     'date' => date('Y-m-d', strtotime($request->date)),
                     'user_id' => auth()->id(),
                     'purchase_id' => $purchase->id,
-                    //                    'purchase_details_id' => $purchaseDetail->id,
                     'product_id' => $value['product_id'],
                     'product_sku' => $value['variation_sku'],
                     'product_barcode' => $value['product_barcode'],

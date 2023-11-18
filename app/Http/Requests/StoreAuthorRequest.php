@@ -24,14 +24,14 @@ class StoreAuthorRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'slug' => 'required|unique:authors,slug|lowercase:authors',
-            'avatar' => 'required|image|max:1024',
+//            'avatar' => 'required|image|max:1024',
             'email' => 'required|unique:authors,email',
             'birthday' => 'required|date|date_format:Y-m-d',
             'death_day' => 'nullable|date_format:Y-m-d|after_or_equal:date_of_birth',
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required' => 'Name is required!',

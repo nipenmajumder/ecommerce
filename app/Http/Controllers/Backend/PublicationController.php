@@ -52,7 +52,6 @@ class PublicationController extends Controller
             return redirect()->route('publication.index')->with('success', 'Publication created successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
-
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

@@ -22,6 +22,8 @@ class Purchase extends Model
         'total_quantity',
         'subtotal',
         'total',
+        'product_profit',
+        'note',
         'status',
     ];
 

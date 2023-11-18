@@ -23,12 +23,12 @@ class StorePublicationRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:publications|lowercase:publications',
+            'slug' => 'required|string|max:255|unique:publications',
             'email' => 'required|email|max:255|unique:publications',
             'phone' => 'required|string|max:255|unique:publications',
             'address' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'image' => 'required|image|max:1024',
+//            'image' => 'required|image|max:1024',
         ];
     }
 

@@ -30,7 +30,7 @@ class PurchaseController extends Controller
     {
         $purchaseCount = Purchase::query()->whereDate('date', date('Y-m-d'))->count();
         $purchaseCount = $purchaseCount ?? 0;
-        $invoice = 'P'.'-'.auth()->user()->id.'-'.date('dmy').
+        $invoice = 'P' . '-' . auth()->user()->id . '-' . date('dmy') .
             (str_pad($purchaseCount + 1, 3, '0', STR_PAD_LEFT));
         $user = auth()->user();
         $date = date('Y-m-d');
@@ -47,11 +47,10 @@ class PurchaseController extends Controller
             DB::beginTransaction();
             $saved = $action->handle($request, $purchase);
             DB::commit();
-
             return $this->respondCreated($saved, 'Product purchased successfully');
         } catch (\Throwable $e) {
+            dd($e->getMessage(), $e->getFile(), $e->getCode());
             DB::rollBack();
-
             return $this->respondError($e->getMessage());
         }
     }
