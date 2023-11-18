@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
-use App\Models\Product;
 use App\Models\Stock;
 
 class OrderController extends Controller
@@ -17,6 +16,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::latest()->with(['customer'])->paginate(10);
+
         return view('backend.order.index', compact('orders'));
     }
 
@@ -46,12 +46,12 @@ class OrderController extends Controller
         } elseif ($order->status = Order::STATUS['processing']) {
 
             $order->load(['orderDetails']);
-;
+
             foreach ($order->orderDetails as $orderDetail) {
                 Stock::query()
                     ->where('product_id', $orderDetail->product_id)
                     ->orderBy('purchase_id', 'asc')
-                    ->limit((int)$orderDetail->quantity)
+                    ->limit((int) $orderDetail->quantity)
                     ->update([
                         'stock_status' => 2,
                     ]);
@@ -60,6 +60,7 @@ class OrderController extends Controller
             $order->status = Order::STATUS['completed'];
         }
         $order->save();
+
         return redirect()->back()->with('success', 'Order status changed successfully!');
     }
 
@@ -69,6 +70,7 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         $order->loadCount('orderDetails')->load(['customer', 'orderDetails.product', 'seller']);
+
         return view('backend.order.edit', compact('order'));
     }
 

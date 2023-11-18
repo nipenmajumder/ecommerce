@@ -17,6 +17,7 @@ class CartController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @throws \Exception
      */
     public function create(Request $request)
@@ -26,6 +27,7 @@ class CartController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @throws \Exception
      */
     public function store(Request $request)
@@ -52,7 +54,8 @@ class CartController extends Controller
             $cart['grand_total'] = $cart['sub_total'] - ($cart['discount'] ?? 0.00);
 
             session()->put('cart', $cart);
-            return $this->respondSuccess($cart, $product['name'] . ' added to cart successfully.');
+
+            return $this->respondSuccess($cart, $product['name'].' added to cart successfully.');
         } catch (\Exception $e) {
             return $this->respondError($e->getMessage());
         }
@@ -106,7 +109,8 @@ class CartController extends Controller
                 $cart['count'] -= 1;
 
                 session()->put('cart', $cart);
-                return $this->respondSuccess($cart, $product['name'] . ' removed from cart successfully.');
+
+                return $this->respondSuccess($cart, $product['name'].' removed from cart successfully.');
             } else {
                 return $this->respondError('Item not found in cart.');
             }
@@ -114,5 +118,4 @@ class CartController extends Controller
             return $this->respondError($e->getMessage());
         }
     }
-
 }

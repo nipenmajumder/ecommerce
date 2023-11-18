@@ -19,6 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::query()->latest()->paginate(10);
+
         return view('backend.category.index', compact('categories'));
     }
 
@@ -53,9 +54,11 @@ class CategoryController extends Controller
             }
             $category->fill($requestData)->save();
             DB::commit();
+
             return redirect()->route('category.index')->with('success', 'Category created successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -71,6 +74,7 @@ class CategoryController extends Controller
             $category->status = Category::STATUS['active'];
         }
         $category->save();
+
         return redirect()->back()->with('success', 'Category status changed successfully!');
     }
 
@@ -105,9 +109,11 @@ class CategoryController extends Controller
             }
             $category->fill($requestData)->save();
             DB::commit();
+
             return redirect()->route('category.index')->with('success', 'Category updated successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

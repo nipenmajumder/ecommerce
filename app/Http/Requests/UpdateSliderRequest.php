@@ -26,6 +26,7 @@ class UpdateSliderRequest extends FormRequest
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ];
     }
+
     public function messages()
     {
         return [

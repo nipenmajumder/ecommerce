@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Settings;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SettingsSeeder extends Seeder
@@ -16,22 +15,22 @@ class SettingsSeeder extends Seeder
         $settings = [
             [
                 'key' => 'site_logo',
-                'value' => 'images/settings/157953324_32e953b4-6c44-4811-b0c5-f527556d7b4f.png'
+                'value' => 'images/settings/157953324_32e953b4-6c44-4811-b0c5-f527556d7b4f.png',
             ],
             [
                 'key' => 'site_name',
-                'value' => 'Book Heaven'
+                'value' => 'Book Heaven',
             ],
             [
                 'key' => 'site_phone',
-                'value' => '0123456789'
+                'value' => '0123456789',
             ],
             [
                 'key' => 'site_email',
                 'value' => 'abcd@gmail.com'],
             [
                 'key' => 'vat_percentage',
-                'value' => '7.5']
+                'value' => '7.5'],
         ];
         Settings::insert($settings);
     }

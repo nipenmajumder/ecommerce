@@ -41,6 +41,7 @@ class BookDetailsController extends Controller
             ->inRandomOrder()
             ->take(4)
             ->get();
+
         return view('frontend.common.details', compact('book', 'relatedBooks', 'publicationBooks'));
     }
 }

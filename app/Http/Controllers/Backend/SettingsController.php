@@ -8,9 +8,6 @@ use App\Models\Settings;
 use App\Services\FileService;
 use Illuminate\Http\Request;
 
-/**
- *
- */
 class SettingsController extends Controller
 {
     /**
@@ -40,10 +37,11 @@ class SettingsController extends Controller
             $image_name = rand();
             $upload_path = 'images/settings/';
             $site_logo = FileService::imageStore($image, $upload_path, $image_name, Settings::get('site_logo'));
-            \Arr::set($data,'site_logo',$site_logo);
+            \Arr::set($data, 'site_logo', $site_logo);
         }
         Settings::updateSettings($data);
         session()->flash('message', 'Setting Updated Successfully!');
+
         return redirect()->back();
     }
 

@@ -18,6 +18,7 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::query()->latest()->paginate(100);
+
         return view('backend.slider.index', compact('sliders'));
     }
 
@@ -47,10 +48,12 @@ class SliderController extends Controller
             }
             $slider->fill($requestData)->save();
             DB::commit();
+
             return redirect()->route('slider.index')->with('success', 'Slider created successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
             session()->flash('error', $e->getMessage());
+
             return redirect()->back();
         }
     }
@@ -66,6 +69,7 @@ class SliderController extends Controller
             $slider->status = Slider::STATUS['active'];
         }
         $slider->save();
+
         return redirect()->back()->with('success', 'Slider status changed successfully!');
     }
 
@@ -74,7 +78,7 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        return view('backend.slider.edit',compact('slider'));
+        return view('backend.slider.edit', compact('slider'));
     }
 
     /**
@@ -95,10 +99,12 @@ class SliderController extends Controller
             }
             $slider->fill($requestData)->save();
             DB::commit();
+
             return redirect()->route('slider.index')->with('success', 'Slider created successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
             session()->flash('error', $e->getMessage());
+
             return redirect()->back();
         }
     }

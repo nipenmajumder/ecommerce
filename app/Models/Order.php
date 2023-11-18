@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    use HasFactory,CreatedUpdatedBy;
+    use CreatedUpdatedBy,HasFactory;
 
     protected $fillable = [
         'date',
@@ -47,14 +47,14 @@ class Order extends Model
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
 
-
     public static function generateInvoiceCode(): string
     {
         $lastInvoice = self::query()
-            ->where('invoice', 'LIKE', 'INV' . '%')
+            ->where('invoice', 'LIKE', 'INV'.'%')
             ->whereDate('date', today())
             ->latest()->count() ?? 0;
-        return 'INV' . '-' . date('dmy') .
-            (str_pad((int)$lastInvoice + 1, 3, '0', STR_PAD_LEFT));
+
+        return 'INV'.'-'.date('dmy').
+            (str_pad((int) $lastInvoice + 1, 3, '0', STR_PAD_LEFT));
     }
 }

@@ -54,7 +54,7 @@ class CheckoutController extends Controller
             $cartItems = session()->get('cart')['items'];
             $items = [];
             foreach ($cartItems as $item) {
-                $items [] = [
+                $items[] = [
                     'user_id' => auth()->id(),
                     'order_id' => $order->id,
                     'product_id' => $item['id'],
@@ -79,9 +79,11 @@ class CheckoutController extends Controller
             ];
             session(['cart' => $cart]);
             DB::commit();
+
             return redirect()->route('home')->with('success', 'Order has been placed successfully');
         } catch (\Exception $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Author;
-use App\Models\Category;
 use App\Models\Product;
-use App\Models\Publication;
 use App\Models\Stock;
 use App\Services\FileService;
 
@@ -27,6 +24,7 @@ class ProductController extends Controller
                 return $query->where('stock_status', Stock::STATUS['Sale']);
             }])
             ->paginate(10);
+
         return view('backend.product.index', compact('products'));
     }
 
@@ -49,6 +47,7 @@ class ProductController extends Controller
                 $requestedData['image'] = FileService::base64FileStore($request->image, 'images/product/', random_int(1, 1000));
             }
             $product->fill($requestedData)->save();
+
             return $this->respondCreated($product, 'Product created successfully');
         } catch (\Throwable $exception) {
             return $this->respondError($exception->getMessage(), $exception->getCode());
@@ -66,6 +65,7 @@ class ProductController extends Controller
             $product->status = Product::STATUS['active'];
         }
         $product->save();
+
         return redirect()->back()->with('success', 'Product status changed successfully!');
     }
 
@@ -75,7 +75,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         abort(403, 'product edit is not available');
-//        return view('backend.product.edit', compact('product'));
+        //        return view('backend.product.edit', compact('product'));
     }
 
     /**

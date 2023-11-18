@@ -9,14 +9,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Slider extends Model
 {
-    use HasFactory, CreatedUpdatedBy, SoftDeletes;
+    use CreatedUpdatedBy, HasFactory, SoftDeletes;
 
     const STATUS = [
         'active' => 1,
         'inactive' => 0,
     ];
+
     protected $table = 'sliders';
+
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'title',
         'image',

@@ -4,26 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('image')->nullable();
-            $table->tinyInteger('status')->default(1);
-            $table->foreignId('created_by')->nullable()
+            $table->string('name', 20)
+                ->nullable();
+            $table->foreignId('created_by')
+                ->nullable()
                 ->constrained('users', 'id')
                 ->onDelete('set null');
-            $table->foreignId('updated_by')->nullable()
+            $table->foreignId('updated_by')
+                ->nullable()
                 ->constrained('users', 'id')
                 ->onDelete('set null');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('branches');
     }
 };

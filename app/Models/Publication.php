@@ -10,9 +10,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Publication extends Model
 {
-    use HasFactory, CreatedUpdatedBy, SoftDeletes;
+    use CreatedUpdatedBy, HasFactory, SoftDeletes;
 
     protected $table = 'publications';
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -25,6 +26,7 @@ class Publication extends Model
         'image',
         'status',
     ];
+
     const STATUS = [
         'active' => 1,
         'inactive' => 0,
@@ -38,7 +40,7 @@ class Publication extends Model
     public function scopeSearch($query, $keyword)
     {
         return $query->where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', '%' . $keyword . '%');
+            $query->where('name', 'LIKE', '%'.$keyword.'%');
         });
     }
 

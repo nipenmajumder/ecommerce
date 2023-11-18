@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\CreatedUpdatedBy;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
@@ -13,11 +12,12 @@ class Stock extends Model
     protected $table = 'stocks';
 
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'date',
         'user_id',
         'purchase_id',
-//        'purchase_details_id',
+        //        'purchase_details_id',
         'product_id',
         'product_sku',
         'product_barcode',
@@ -25,6 +25,7 @@ class Stock extends Model
         'sell_price',
         'stock_status',
     ];
+
     const STATUS = [
         'Stock' => 1,
         'Sale' => 2,

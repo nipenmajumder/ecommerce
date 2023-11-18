@@ -14,6 +14,7 @@ class AuthorController extends Controller
     public function __invoke(Request $request)
     {
         $authors = Author::query()->get(['id', 'name']);
+
         return $this->respondSuccess($authors, 'Authors fetched successfully');
     }
 }

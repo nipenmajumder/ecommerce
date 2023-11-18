@@ -10,9 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Purchase extends Model
 {
-    use HasFactory, CreatedUpdatedBy;
+    use CreatedUpdatedBy, HasFactory;
 
     protected $table = 'purchases';
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -21,6 +22,8 @@ class Purchase extends Model
         'total_quantity',
         'subtotal',
         'total',
+        'product_profit',
+        'note',
         'status',
     ];
 

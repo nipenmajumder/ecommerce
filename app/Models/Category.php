@@ -10,17 +10,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory, CreatedUpdatedBy, SoftDeletes;
+    use CreatedUpdatedBy, HasFactory, SoftDeletes;
 
     protected $table = 'categories';
 
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'slug',
         'image',
         'status',
     ];
+
     const STATUS = [
         'active' => 1,
         'inactive' => 0,
@@ -34,7 +36,7 @@ class Category extends Model
     public function scopeSearch($query, $keyword)
     {
         return $query->where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', '%' . $keyword . '%');
+            $query->where('name', 'LIKE', '%'.$keyword.'%');
         });
     }
 

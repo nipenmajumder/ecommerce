@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Publication;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -27,12 +26,12 @@ class UpdatePublicationRequest extends FormRequest
             'name' => 'sometimes|required|string|max:255',
             'slug' => ['sometimes', 'required', 'string', 'max:255',
                 Rule::unique('publications')->ignore($this->route('publication')),
-                'lowercase'
+                'lowercase',
             ],
             'email' => ['sometimes', 'required', 'email', 'max:255',
                 Rule::unique('publications')->ignore($this->route('publication')),
             ],
-            'phone' => ['sometimes', 'required', 'string','max:255',
+            'phone' => ['sometimes', 'required', 'string', 'max:255',
                 Rule::unique('publications')->ignore($this->route('publication')),
             ],
             'address' => 'sometimes|required|string|max:255',
@@ -40,6 +39,7 @@ class UpdatePublicationRequest extends FormRequest
             'image' => 'sometimes|required|image|max:1024',
         ];
     }
+
     public function messages(): array
     {
         return [

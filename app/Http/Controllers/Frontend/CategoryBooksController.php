@@ -18,6 +18,7 @@ class CategoryBooksController extends Controller
             ->with('books')
             ->first(['id', 'name']);
         $booksPaginator = $data->books()->paginate(12);
-        return view('frontend.common.book', compact( 'booksPaginator'));
+
+        return view('frontend.common.book', compact('booksPaginator'));
     }
 }

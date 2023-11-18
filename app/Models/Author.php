@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Author extends Model
 {
-    use HasFactory,CreatedUpdatedBy,SoftDeletes;
+    use CreatedUpdatedBy,HasFactory,SoftDeletes;
 
-    protected $table='authors';
-    protected $primaryKey='id';
+    protected $table = 'authors';
+
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'slug',
@@ -21,7 +23,7 @@ class Author extends Model
         'email',
         'birthday',
         'death_day',
-        'status'
+        'status',
     ];
 
     const STATUS = [
@@ -37,7 +39,7 @@ class Author extends Model
     public function scopeSearch($query, $keyword)
     {
         return $query->where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', '%' . $keyword . '%');
+            $query->where('name', 'LIKE', '%'.$keyword.'%');
         });
     }
 

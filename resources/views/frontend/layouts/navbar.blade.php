@@ -2,10 +2,8 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
             <a class="navbar-brand" href="{{route('home')}}">
-                @if(cache()->get('settings.toArray'))
-                    <img src="{{asset(cache()->get('settings.toArray')['site_logo'])}}" class="img-fluid" width="80"
-                         alt="">
-                @endif
+                <img src="{{asset(\App\Models\Settings::get('site_logo'))}}" class="img-fluid" width="80"
+                     alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -64,7 +62,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </nav>
     <div class="bg-body-tertiary border-bottom">

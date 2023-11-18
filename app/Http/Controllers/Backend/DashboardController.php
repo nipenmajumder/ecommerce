@@ -21,6 +21,7 @@ class DashboardController extends Controller
         $totalSold = Stock::where('stock_status', 2)->count();
         $totalStockPrice = Stock::where('stock_status', 1)->sum('purchase_price');
         $totalSoldBooksPrice = Stock::where('stock_status', 2)->sum('sell_price');
+
         return view('backend.dashboard', compact('orderCount', 'totalBooks', 'totalStock', 'totalSold', 'totalStockPrice', 'totalSoldBooksPrice'));
     }
 }

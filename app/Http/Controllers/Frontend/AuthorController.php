@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Author;
-use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -20,6 +19,7 @@ class AuthorController extends Controller
             })
             ->active()
             ->get();
+
         return view('frontend.common.common', compact('data'));
     }
 }

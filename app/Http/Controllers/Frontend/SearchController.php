@@ -19,6 +19,7 @@ class SearchController extends Controller
             ->limit(10)
             ->with(['author', 'category', 'publication'])
             ->get();
+
         return $this->respondSuccess($books, 'Search result fetched successfully.');
     }
 }
