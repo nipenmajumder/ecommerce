@@ -2,6 +2,9 @@
 
 namespace App\Actions;
 
+use App\Models\FragmentPurchase;
+use App\Models\FragmentPurchaseDetails;
+use App\Models\FragmentStock;
 use App\Models\Purchase;
 use App\Models\PurchaseDetails;
 use App\Models\Stock;
@@ -10,6 +13,8 @@ class PurchaseStoreAction
 {
     public function handle($request, Purchase $purchase): Purchase
     {
+        $fragmentPurchase = new FragmentPurchase();
+        $fragmentPurchaseDetails = new FragmentPurchaseDetails();
         $data = [
             'date' => date('Y-m-d', strtotime($request->date)),
             'invoice' => $request->invoice,
@@ -19,6 +24,7 @@ class PurchaseStoreAction
             'status' => Purchase::STATUS['approved'],
         ];
         $purchase->fill($data)->save();
+        $fragmentPurchase->fill($data)->save();
 
         foreach ($request->purchase_products as $key => $value) {
             $purchaseDetail = new PurchaseDetails();
@@ -34,6 +40,7 @@ class PurchaseStoreAction
                 'total' => $value['total_price'],
             ];
             $purchaseDetail->fill($details)->save();
+            $fragmentPurchaseDetails->fill($details)->save();
             $stock_data = [];
             for ($i = 1; $i <= $value['quantity']; $i++) {
                 $stock_data[] = [
@@ -51,7 +58,11 @@ class PurchaseStoreAction
                     'updated_at' => date('Y-m-d H:i:s'),
                 ];
             }
-            Stock::insert($stock_data);
+            if ($value['category_id'] == 1) {
+                Stock::insert($stock_data);
+            } else {
+                FragmentStock::insert($stock_data);
+            }
         }
 
         return $purchase;

@@ -49,7 +49,7 @@ class PurchaseController extends Controller
             DB::commit();
             return $this->respondCreated($saved, 'Product purchased successfully');
         } catch (\Throwable $e) {
-            dd($e->getMessage(), $e->getFile(), $e->getCode());
+//            dd($e->getMessage(), $e->getFile(), $e->getCode());
             DB::rollBack();
             return $this->respondError($e->getMessage());
         }

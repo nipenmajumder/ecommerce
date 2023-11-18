@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\FragmentProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -26,15 +27,18 @@ class GenerateSkuBarcode extends Controller
     private function generateBarcode(): string
     {
         $latestBarcode = Product::query()->max('barcode');
-        $nextBarcode = ($latestBarcode !== null) ? ($latestBarcode + 1) : 1;
+        $fragmentLatestBarcode = FragmentProduct::query()->max('barcode');
+        $maxBarcode = max($latestBarcode,$fragmentLatestBarcode);
+        $nextBarcode = ($maxBarcode !== null) ? ($maxBarcode + 1) : 1;
 
         return str_pad((string) $nextBarcode, 8, '0', STR_PAD_LEFT);
     }
 
     private function generateSku()
     {
-        $product = Product::query()->latest()->first();
-        $productCode = $product ? $product->id : 0;
+        $productCount = Product::query()->count();
+        $fragmentProductCount = FragmentProduct::query()->count();
+        $productCode = $productCount + $fragmentProductCount;
         $productCode = (int) $productCode + 1;
 
         return 'BOOK'.'-'.str_pad($productCode, 7, '0', STR_PAD_LEFT);

@@ -181,7 +181,7 @@ export default {
     },
     computed: {
         totalCalculation() {
-            const totalPurchase = this.purchaseProducts.reduce((total, current) => total + current.total_price, 0);
+            const totalPurchase = this.purchaseProducts.reduce((total, current) => total + parseFloat(current.total_price), 0);
             const totalQuantity = this.purchaseProducts.reduce((total, current) => total + current.quantity, 0);
             const totalSellPrice = this.purchaseProducts.reduce((total, current) => total + (current.product_sell_price * current.quantity), 0);
             const profit = parseFloat(totalSellPrice) - parseFloat(totalPurchase)
