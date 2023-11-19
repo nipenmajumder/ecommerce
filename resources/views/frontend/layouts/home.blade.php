@@ -32,34 +32,55 @@
         <section>
             <p class="fs-6 border p-2 mt-3 mb-3">{{$category->name}}</p>
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                @foreach($category->books->take(6) as $book)
-                    <div class="col-md-2">
-                        <div class="card h-100">
-                            <a href="{{route('book-details-slug',$book->slug)}}">
-                                <img src="{{asset($book->image)}}" class="card-img-top"
-                                     alt="{{Str::limit($book->name,15)}}">
-                            </a>
-{{--                            <span--}}
-{{--                                class="position-absolute top-0 start-25 translate-middle badge border border-light rounded-circle bg-danger p-2 mt-2">--}}
-{{--                            30%<br>ছাড়--}}
-{{--                        </span>--}}
-                            <div class="card-body">
-                                <a href="{{route('book-details-slug',$book->slug)}}"
-                                   class="text-decoration-none text-black font-bold">
-                                    <h5 class="card-title fs-6">{{Str::limit($book->name,11)}}</h5>
+                @if(in_array($category->id , [1, 2, 3, 4]) )
+                    @foreach($category->books as $book)
+                        <div class="col-md-2">
+                            <div class="card h-100">
+                                <a href="{{route('book-details-slug',$book->slug)}}">
+                                    <img src="{{asset($book->image)}}" class="card-img-top"
+                                         alt="{{Str::limit($book->name,15)}}">
                                 </a>
-                                <a href="{{route('author.book',$book->author?->slug)}}"
-                                   class="text-decoration-none text-black font-bold">
-                                    <p class="card-text text-body-secondary fs-6">{{Str::limit($book->author?->name,13)}}</p>
-                                </a>
-                                <p class="card-text">
-{{--                                    <span class="text-decoration-line-through">460 ৳</span>--}}
-                                    <span class="text-danger">{{$book->sell_price}} ৳</span>
-                                </p>
+                                <div class="card-body">
+                                    <a href="{{route('book-details-slug',$book->slug)}}"
+                                       class="text-decoration-none text-black font-bold">
+                                        <h5 class="card-title fs-6">{{Str::limit($book->name,11)}}</h5>
+                                    </a>
+                                    <a href="{{route('author.book',$book->author?->slug)}}"
+                                       class="text-decoration-none text-black font-bold">
+                                        <p class="card-text text-body-secondary fs-6">{{Str::limit($book->author?->name,13)}}</p>
+                                    </a>
+                                    <p class="card-text">
+                                        <span class="text-danger">{{$book->sell_price}} ৳</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                    @foreach($category->fragmentBooks as $book)
+                        <div class="col-md-2">
+                            <div class="card h-100">
+                                <a href="{{route('book-details-slug',$book->slug)}}">
+                                    <img src="{{asset($book->image)}}" class="card-img-top"
+                                         alt="{{Str::limit($book->name,15)}}">
+                                </a>
+                                <div class="card-body">
+                                    <a href="{{route('book-details-slug',$book->slug)}}"
+                                       class="text-decoration-none text-black font-bold">
+                                        <h5 class="card-title fs-6">{{Str::limit($book->name,11)}}</h5>
+                                    </a>
+                                    <a href="{{route('author.book',$book->author?->slug)}}"
+                                       class="text-decoration-none text-black font-bold">
+                                        <p class="card-text text-body-secondary fs-6">{{Str::limit($book->author?->name,13)}}</p>
+                                    </a>
+                                    <p class="card-text">
+                                        <span class="text-danger">{{$book->sell_price}} ৳</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
 
                 @if(count($category->books) < 6)
                     @for($i = count($category->books); $i < 6; $i++)

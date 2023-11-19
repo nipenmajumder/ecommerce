@@ -43,7 +43,7 @@ class PurchaseStoreAction
             $fragmentPurchaseDetails->fill($details)->save();
             $stock_data = [];
             for ($i = 1; $i <= $value['quantity']; $i++) {
-                $stock_data[] = [
+                $stock_data = [
                     'date' => date('Y-m-d', strtotime($request->date)),
                     'user_id' => auth()->id(),
                     'purchase_id' => $purchase->id,
@@ -57,11 +57,14 @@ class PurchaseStoreAction
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ];
-            }
-            if ($value['category_id'] == 1) {
-                Stock::insert($stock_data);
-            } else {
-                FragmentStock::insert($stock_data);
+                $stock = new Stock();
+                $fragmentStock = new FragmentStock();
+                if (in_array($value['category_id'], [1, 2, 3, 4])) {
+                    $stock->fill($stock_data)->save();
+                } else {
+                    $fragmentStock->fill($stock_data)->save();
+                }
+
             }
         }
 

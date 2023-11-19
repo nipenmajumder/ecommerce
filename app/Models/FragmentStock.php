@@ -25,6 +25,10 @@ class FragmentStock extends Model
         'purchase_price',
         'sell_price',
         'stock_status',
+        'created_at',
+        'updated_at',
+        'created_by',
+        'updated_by',
     ];
 
     const STATUS = [

@@ -58,8 +58,8 @@ class ProductController extends Controller
             if ($request->image !== null) {
                 $requestedData['image'] = FileService::base64FileStore($request->image, 'images/product/', random_int(1, 1000));
             }
-//            if ( in_array($request->category_id,[1,2,3]) ) {
-            if ($request->category_id == 1) {
+            if (in_array($request->category_id, [1, 2, 3, 4])) {
+//            if ($request->category_id == 1) {
                 $product->fill($requestedData)->save();
             } else {
                 $fragmentProduct->fill($requestedData)->save();

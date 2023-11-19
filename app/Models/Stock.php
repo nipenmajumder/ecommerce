@@ -17,13 +17,16 @@ class Stock extends Model
         'date',
         'user_id',
         'purchase_id',
-        //        'purchase_details_id',
         'product_id',
         'product_sku',
         'product_barcode',
         'purchase_price',
         'sell_price',
         'stock_status',
+        'created_at',
+        'updated_at',
+        'created_by',
+        'updated_by',
     ];
 
     const STATUS = [
