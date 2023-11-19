@@ -2,6 +2,9 @@
 
 namespace App\Actions;
 
+use App\Models\FragmentPurchase;
+use App\Models\FragmentPurchaseDetails;
+use App\Models\FragmentStock;
 use App\Models\Purchase;
 use App\Models\PurchaseDetails;
 use App\Models\Stock;
@@ -10,6 +13,8 @@ class PurchaseStoreAction
 {
     public function handle($request, Purchase $purchase): Purchase
     {
+        $fragmentPurchase = new FragmentPurchase();
+        $fragmentPurchaseDetails = new FragmentPurchaseDetails();
         $data = [
             'date' => date('Y-m-d', strtotime($request->date)),
             'invoice' => $request->invoice,
@@ -19,6 +24,7 @@ class PurchaseStoreAction
             'status' => Purchase::STATUS['approved'],
         ];
         $purchase->fill($data)->save();
+        $fragmentPurchase->fill($data)->save();
 
         foreach ($request->purchase_products as $key => $value) {
             $purchaseDetail = new PurchaseDetails();
@@ -34,9 +40,10 @@ class PurchaseStoreAction
                 'total' => $value['total_price'],
             ];
             $purchaseDetail->fill($details)->save();
+            $fragmentPurchaseDetails->fill($details)->save();
             $stock_data = [];
             for ($i = 1; $i <= $value['quantity']; $i++) {
-                $stock_data[] = [
+                $stock_data = [
                     'date' => date('Y-m-d', strtotime($request->date)),
                     'user_id' => auth()->id(),
                     'purchase_id' => $purchase->id,
@@ -50,8 +57,15 @@ class PurchaseStoreAction
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ];
+                $stock = new Stock();
+                $fragmentStock = new FragmentStock();
+                if (in_array($value['category_id'], [1, 2, 3, 4])) {
+                    $stock->fill($stock_data)->save();
+                } else {
+                    $fragmentStock->fill($stock_data)->save();
+                }
+
             }
-            Stock::insert($stock_data);
         }
 
         return $purchase;

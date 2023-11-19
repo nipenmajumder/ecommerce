@@ -22,6 +22,8 @@ class HomeController extends Controller
             ->with([
                 'books:id,name,slug,sku,barcode,sell_price,category_id,author_id,image',
                 'books.author:id,name,slug',
+                'fragmentBooks:id,name,slug,sku,barcode,sell_price,category_id,author_id,image',
+                'fragmentBooks.author:id,name,slug',
             ])
             ->get([
                 'id',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\FragmentProduct;
 use App\Models\Product;
 use App\Models\Stock;
 use App\Services\FileService;
@@ -23,8 +24,19 @@ class ProductController extends Controller
             ->withCount(['stocks as total_sold' => function ($query) {
                 return $query->where('stock_status', Stock::STATUS['Sale']);
             }])
-            ->paginate(10);
+            ->get();
+        $fragmentProduct = FragmentProduct::query()
+            ->withCount(['fragmentStocks as total_stock' => function ($query) {
+                return $query->where('stock_status', Stock::STATUS['Stock']);
+            }])
+            ->withCount(['fragmentStocks as total_sold' => function ($query) {
+                return $query->where('stock_status', Stock::STATUS['Sale']);
+            }])
+            ->get();
 
+        $products = collect([$products, $fragmentProduct])
+            ->flatten(1)
+            ->paginate(10);
         return view('backend.product.index', compact('products'));
     }
 
@@ -39,14 +51,19 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request, Product $product)
+    public function store(StoreProductRequest $request, Product $product, FragmentProduct $fragmentProduct)
     {
         try {
             $requestedData = $request->validated();
             if ($request->image !== null) {
                 $requestedData['image'] = FileService::base64FileStore($request->image, 'images/product/', random_int(1, 1000));
             }
-            $product->fill($requestedData)->save();
+            if (in_array($request->category_id, [1, 2, 3, 4])) {
+//            if ($request->category_id == 1) {
+                $product->fill($requestedData)->save();
+            } else {
+                $fragmentProduct->fill($requestedData)->save();
+            }
 
             return $this->respondCreated($product, 'Product created successfully');
         } catch (\Throwable $exception) {

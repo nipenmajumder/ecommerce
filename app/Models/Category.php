@@ -44,4 +44,9 @@ class Category extends Model
     {
         return $this->hasMany(Product::class, 'category_id', 'id');
     }
+
+    public function fragmentBooks(): HasMany
+    {
+        return $this->hasMany(FragmentProduct::class, 'category_id', 'id');
+    }
 }

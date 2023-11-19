@@ -203,7 +203,6 @@ export default {
         getCategories() {
             axios.get(route('get-categories-data'))
                 .then(response => {
-                  console.log(response.data.result.data)
                     this.categories = response.data.result.data;
                 })
                 .catch(error => {
