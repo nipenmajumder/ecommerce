@@ -31,7 +31,6 @@ class HomeController extends Controller
                 'slug',
                 'image',
             ]);
-        $settings = Settings::getAllSettings();
 
         return view('frontend.layouts.home', compact('sliders', 'categories'));
     }
