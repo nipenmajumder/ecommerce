@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Settings;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
@@ -22,9 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::preventLazyLoading(! app()->isProduction());
+        Model::preventLazyLoading(!app()->isProduction());
 //        Model::shouldBeStrict(! app()->isProduction());
-        Model::preventSilentlyDiscardingAttributes(! app()->isProduction());
+        Model::preventSilentlyDiscardingAttributes(!app()->isProduction());
         if ($this->app->environment(['production', 'staging'])) {
             URL::forceScheme('https');
         }
@@ -39,5 +40,6 @@ class AppServiceProvider extends ServiceProvider
         ];
         Paginator::useBootstrapFive();
         session(['cart' => $cart]);
+        Settings::getAllSettings();
     }
 }
