@@ -17,10 +17,14 @@ class DashboardController extends Controller
     {
         $orderCount = Order::query()->where('created_at', '>=', today())->count();
         $totalBooks = Product::count();
-        $totalStock = Stock::where('stock_status', 1)->count();
-        $totalSold = Stock::where('stock_status', 2)->count();
-        $totalStockPrice = Stock::where('stock_status', 1)->sum('purchase_price');
-        $totalSoldBooksPrice = Stock::where('stock_status', 2)->sum('sell_price');
+        //        $totalStock = Stock::where('stock_status', 1)->count();
+        //        $totalSold = Stock::where('stock_status', 2)->count();
+        //        $totalStockPrice = Stock::where('stock_status', 1)->sum('purchase_price');
+        //        $totalSoldBooksPrice = Stock::where('stock_status', 2)->sum('sell_price');
+        $totalStock = 0;
+        $totalSold = 0;
+        $totalStockPrice = 0;
+        $totalSoldBooksPrice = 0;
 
         return view('backend.dashboard', compact('orderCount', 'totalBooks', 'totalStock', 'totalSold', 'totalStockPrice', 'totalSoldBooksPrice'));
     }

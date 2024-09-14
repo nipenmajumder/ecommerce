@@ -15,6 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('key');
             $table->longText('value')->nullable();
+            $table->foreignId('created_by')
+                ->nullable()
+                ->index()
+                ->constrained('users')
+                ->onDelete('set null');
+            $table->foreignId('updated_by')
+                ->nullable()
+                ->index()
+                ->constrained('users')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }
