@@ -104,12 +104,12 @@
                 <div>Products</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="{{route('purchase.index')}}" class="menu-link">
-                <i class='menu-icon bx bx-book-heart'></i>
-                <div>Purchase</div>
-            </a>
-        </li>
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('purchase.index')}}" class="menu-link">--}}
+{{--                <i class='menu-icon bx bx-book-heart'></i>--}}
+{{--                <div>Purchase</div>--}}
+{{--            </a>--}}
+{{--        </li>--}}
         <li class="menu-item">
             <a href="{{route('order.index')}}" class="menu-link">
                 <i class='menu-icon bx bxs-message-square'></i>

@@ -17,21 +17,16 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         $orderCount = Order::query()->where('created_at', '>=', today())->count();
-        $books = Product::count();
-        $fragmentBooks = FragmentProduct::count();
-        $totalBooks = $books + $fragmentBooks;
-        $stock = Stock::where('stock_status', 1)->count();
-        $fragmentStock = Stock::where('stock_status', 1)->count();
-        $totalStock = $stock + $fragmentStock;
-        $sold = Stock::where('stock_status', 2)->count();
-        $fragmentSold = Stock::where('stock_status', 2)->count();
-        $totalSold = $sold + $fragmentSold;
-        $stockPrice = Stock::where('stock_status', 1)->sum('purchase_price');
-        $fragmentStockPrice = Stock::where('stock_status', 1)->sum('purchase_price');
-        $totalStockPrice = $stockPrice + $fragmentStockPrice;
-        $soldBooksPrice = Stock::where('stock_status', 2)->sum('sell_price');
-        $fragmentSoldBooksPrice = Stock::where('stock_status', 2)->sum('sell_price');
-        $totalSoldBooksPrice = $soldBooksPrice + $fragmentSoldBooksPrice;
+        $totalBooks = Product::count();
+        //        $totalStock = Stock::where('stock_status', 1)->count();
+        //        $totalSold = Stock::where('stock_status', 2)->count();
+        //        $totalStockPrice = Stock::where('stock_status', 1)->sum('purchase_price');
+        //        $totalSoldBooksPrice = Stock::where('stock_status', 2)->sum('sell_price');
+        $totalStock = 0;
+        $totalSold = 0;
+        $totalStockPrice = 0;
+        $totalSoldBooksPrice = 0;
+
         return view('backend.dashboard', compact('orderCount', 'totalBooks', 'totalStock', 'totalSold', 'totalStockPrice', 'totalSoldBooksPrice'));
     }
 }

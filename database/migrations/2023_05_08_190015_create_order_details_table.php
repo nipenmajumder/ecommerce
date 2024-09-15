@@ -13,14 +13,20 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()
-                ->constrained('users', 'id')
+            $table->foreignId('user_id')
+                ->nullable()
+                ->index()
+                ->constrained('users')
                 ->onDelete('set null');
-            $table->foreignId('order_id')->nullable()
-                ->constrained('orders', 'id')
+            $table->foreignId('order_id')
+                ->nullable()
+                ->index()
+                ->constrained('orders')
                 ->onDelete('set null');
-            $table->foreignId('product_id')->nullable()
-                ->constrained('products', 'id')
+            $table->foreignId('product_id')
+                ->nullable()
+                ->index()
+                ->constrained('products')
                 ->onDelete('set null');
             $table->double('purchase_price');
             $table->double('sell_price');
@@ -28,11 +34,13 @@ return new class extends Migration
             $table->double('total');
             $table->foreignId('created_by')
                 ->nullable()
-                ->constrained('users', 'id')
+                ->index()
+                ->constrained('users')
                 ->onDelete('set null');
             $table->foreignId('updated_by')
                 ->nullable()
-                ->constrained('users', 'id')
+                ->index()
+                ->constrained('users')
                 ->onDelete('set null');
             $table->timestamps();
         });

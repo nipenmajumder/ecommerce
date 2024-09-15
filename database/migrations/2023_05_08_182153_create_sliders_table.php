@@ -15,12 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('image')->nullable();
-            $table->tinyInteger('status')->default(1);
-            $table->foreignId('created_by')->nullable()
-                ->constrained('users', 'id')
+            $table->tinyInteger('status')
+                ->default(1);
+            $table->foreignId('created_by')
+                ->nullable()
+                ->index()
+                ->constrained('users')
                 ->onDelete('set null');
-            $table->foreignId('updated_by')->nullable()
-                ->constrained('users', 'id')
+            $table->foreignId('updated_by')
+                ->nullable()
+                ->index()
+                ->constrained('users')
                 ->onDelete('set null');
             $table->softDeletes();
             $table->timestamps();

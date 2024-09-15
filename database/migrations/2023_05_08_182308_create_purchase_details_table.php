@@ -11,31 +11,31 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchase_details', function (Blueprint $table) {
-            $table->id();
-            $table->date('date');
-            $table->string('invoice');
-            $table->foreignId('user_id')->nullable()
-                ->constrained('users', 'id')
-                ->onDelete('set null');
-            $table->foreignId('purchase_id')->nullable()
-                ->constrained('purchases', 'id')
-                ->onDelete('set null');
-            $table->foreignId('product_id')->nullable()
-                ->constrained('products', 'id')
-                ->onDelete('set null');
-            $table->double('purchase_price');
-            $table->double('sell_price');
-            $table->double('quantity');
-            $table->double('total');
-            $table->foreignId('created_by')->nullable()
-                ->constrained('users', 'id')
-                ->onDelete('set null');
-            $table->foreignId('updated_by')->nullable()
-                ->constrained('users', 'id')
-                ->onDelete('set null');
-            $table->timestamps();
-        });
+        //        Schema::create('purchase_details', function (Blueprint $table) {
+        //            $table->id();
+        //            $table->date('date');
+        //            $table->string('invoice');
+        //            $table->foreignId('user_id')->nullable()
+        //                ->constrained('users', 'id')
+        //                ->onDelete('set null');
+        //            $table->foreignId('purchase_id')->nullable()
+        //                ->constrained('purchases', 'id')
+        //                ->onDelete('set null');
+        //            $table->foreignId('product_id')->nullable()
+        //                ->constrained('products', 'id')
+        //                ->onDelete('set null');
+        //            $table->double('purchase_price');
+        //            $table->double('sell_price');
+        //            $table->double('quantity');
+        //            $table->double('total');
+        //            $table->foreignId('created_by')->nullable()
+        //                ->constrained('users', 'id')
+        //                ->onDelete('set null');
+        //            $table->foreignId('updated_by')->nullable()
+        //                ->constrained('users', 'id')
+        //                ->onDelete('set null');
+        //            $table->timestamps();
+        //        });
     }
 
     /**
@@ -43,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchase_details');
+        //        Schema::dropIfExists('purchase_details');
     }
 };

@@ -25,7 +25,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        $user = User::query()->where('email', 'amitmojumder356@gmail.com')->first();
+        $user = User::query()
+            ->where('email', 'amitmojumder356@gmail.com')
+            ->first();
         $user->assignRole('admin');
     }
 }

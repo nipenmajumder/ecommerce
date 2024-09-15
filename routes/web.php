@@ -52,7 +52,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('author', AuthorController::class);
     Route::resource('publication', PublicationController::class);
     Route::resource('product', ProductController::class);
-    Route::resource('purchase', PurchaseController::class)->except(['edit', 'update']);
+//    Route::resource('purchase', PurchaseController::class)->except(['edit', 'update']);
     Route::resource('order', OrderController::class);
     Route::resource('role', RoleController::class);
     Route::resource('settings', SettingsController::class)->only(['index', 'store']);
