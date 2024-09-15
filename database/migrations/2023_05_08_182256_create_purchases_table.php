@@ -11,23 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchases', function (Blueprint $table) {
-            $table->id();
-            $table->date('date');
-            $table->string('invoice');
-            $table->double('total_quantity');
-            $table->double('subtotal');
-            $table->double('total');
-            $table->tinyInteger('status')->default(1);
-            $table->foreignId('created_by')->nullable()
-                ->constrained('users', 'id')
-                ->onDelete('set null');
-            $table->foreignId('updated_by')->nullable()
-                ->constrained('users', 'id')
-                ->onDelete('set null');
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        //        Schema::create('purchases', function (Blueprint $table) {
+        //            $table->id();
+        //            $table->date('date');
+        //            $table->string('invoice');
+        //            $table->double('total_quantity');
+        //            $table->double('subtotal');
+        //            $table->double('total');
+        //            $table->tinyInteger('status')->default(1);
+        //            $table->foreignId('created_by')->nullable()
+        //                ->constrained('users', 'id')
+        //                ->onDelete('set null');
+        //            $table->foreignId('updated_by')->nullable()
+        //                ->constrained('users', 'id')
+        //                ->onDelete('set null');
+        //            $table->softDeletes();
+        //            $table->timestamps();
+        //        });
     }
 
     /**
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchases');
+        //        Schema::dropIfExists('purchases');
     }
 };

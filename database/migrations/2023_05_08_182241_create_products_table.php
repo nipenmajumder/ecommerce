@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,23 +18,39 @@ return new class extends Migration
             $table->string('barcode')->unique();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('category_id')->nullable()
-                ->constrained('categories', 'id')
+            $table->foreignId('category_id')
+                ->nullable()
+                ->index()
+                ->constrained('categories')
                 ->onDelete('set null');
-            $table->foreignId('author_id')->nullable()
-                ->constrained('authors', 'id')
+            $table->foreignId('author_id')
+                ->nullable()
+                ->index()
+                ->constrained('authors')
                 ->onDelete('set null');
-            $table->foreignId('publication_id')->nullable()
-                ->constrained('publications', 'id')
+            $table->foreignId('publication_id')
+                ->nullable()
+                ->index()
+                ->constrained('publications')
                 ->onDelete('set null');
-            $table->decimal('buy_price', 15, 2)->default(0);
-            $table->decimal('sell_price', 15, 2)->default(0);
-            $table->tinyInteger('status')->default(1);
-            $table->foreignId('created_by')->nullable()
-                ->constrained('users', 'id')
+            $table->decimal('buy_price', 15, 2)
+                ->default(0);
+            $table->decimal('sell_price', 15, 2)
+                ->default(0);
+            $table->integer('stock')
+                ->default(0)
+                ->index();
+            $table->tinyInteger('status')
+                ->default(1);
+            $table->foreignId('created_by')
+                ->nullable()
+                ->index()
+                ->constrained('users')
                 ->onDelete('set null');
-            $table->foreignId('updated_by')->nullable()
-                ->constrained('users', 'id')
+            $table->foreignId('updated_by')
+                ->nullable()
+                ->index()
+                ->constrained('users')
                 ->onDelete('set null');
             $table->softDeletes();
             $table->timestamps();
